@@ -1,19 +1,4 @@
-DROP TABLE IF EXISTS region, city, profession, area_education, education_program, education_profession, university, university_education;
-
-CREATE TABLE IF NOT EXISTS region
-(
-    region_id   SERIAL PRIMARY KEY,
-    name_region VARCHAR(255) NOT NULL UNIQUE CHECK (name_region != '')
-);
-
-CREATE TABLE IF NOT EXISTS city
-(
-    city_id   SERIAL PRIMARY KEY,
-    name_city VARCHAR(255) NOT NULL CHECK ( name_city != ''),
-    region_id INT          NOT NULL,
-    FOREIGN KEY (region_id) REFERENCES region (region_id)
-);
-
+DROP TABLE IF EXISTS profession, area_education, education_program, education_profession, university, university_education;
 
 CREATE TABLE IF NOT EXISTS profession
 (
@@ -52,12 +37,11 @@ CREATE TABLE IF NOT EXISTS university
 (
     university_id   SERIAL PRIMARY KEY,
     name_university VARCHAR(255) NOT NULL UNIQUE CHECK (name_university != ''),
-    city_id         INT          NOT NULL,
+    area_id         INT          NOT NULL,
     address         VARCHAR(255) NOT NULL,
     phone           VARCHAR(255) NOT NULL,
     email           VARCHAR(255),
-    site            VARCHAR(255),
-    FOREIGN KEY (city_id) REFERENCES city (city_id)
+    site            VARCHAR(255)
 --     wiki_url VARCHAR(255) NOT NULL,
 --     is_state BOOLEAN,
 --     has_hostel BOOLEAN
@@ -76,6 +60,3 @@ CREATE TABLE IF NOT EXISTS university_education
     FOREIGN KEY (education_program_id) REFERENCES education_program (education_program_id),
     FOREIGN KEY (university_id) REFERENCES university (university_id)
 );
-
-
-
