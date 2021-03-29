@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS profession, area_education, education_program, education_pr
 CREATE TABLE IF NOT EXISTS profession
 (
     profession_id   SERIAL PRIMARY KEY,
-    id_in_hhapi     VARCHAR(15)  NOT NULL,
-    name_profession VARCHAR(255) NOT NULL UNIQUE CHECK (name_profession != '')
+    hhapi_id        VARCHAR(15)  NOT NULL UNIQUE CHECK (hhapi_id != ''),
+    profession_name VARCHAR(255) NOT NULL UNIQUE CHECK (profession_name != '')
 );
 
 CREATE TABLE IF NOT EXISTS area_education
