@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS profession, area_education, education_program, education_profession, university, university_education;
+DROP TABLE IF EXISTS profession, training_direction, specialty, specialty_profession, university, university_education;
 
 CREATE TABLE IF NOT EXISTS profession
 (
@@ -7,36 +7,36 @@ CREATE TABLE IF NOT EXISTS profession
     profession_name VARCHAR(255) NOT NULL UNIQUE CHECK (profession_name != '')
 );
 
-CREATE TABLE IF NOT EXISTS area_education
+CREATE TABLE IF NOT EXISTS training_direction
 (
-    area_education_id   SERIAL PRIMARY KEY,
-    name_area_education VARCHAR(255) NOT NULL,
-    code_area_education VARCHAR(8)   NOT NULL UNIQUE CHECK (code_area_education != '')
+    training_direction_id   SERIAL PRIMARY KEY,
+    training_direction_name VARCHAR(255) NOT NULL,
+    training_direction_code VARCHAR(8)   NOT NULL UNIQUE CHECK (training_direction_code != '')
 );
 
-CREATE TABLE IF NOT EXISTS education_program
+CREATE TABLE IF NOT EXISTS specialty
 (
-    education_program_id   SERIAL PRIMARY KEY,
-    name_education_program VARCHAR(255) NOT NULL,
-    code_education_program VARCHAR(8)   NOT NULL UNIQUE CHECK (code_education_program != ''),
+    specialty_id   SERIAL PRIMARY KEY,
+    specialty_name VARCHAR(255) NOT NULL,
+    specialty_code VARCHAR(8)   NOT NULL UNIQUE CHECK (specialty_code != ''),
     degree                 VARCHAR(255) NOT NULL,
-    area_education_id      INT          NOT NULL,
-    FOREIGN KEY (area_education_id) REFERENCES area_education (area_education_id)
+    training_direction_id      INT          NOT NULL,
+    FOREIGN KEY (training_direction_id) REFERENCES training_direction (training_direction_id)
 );
 
-CREATE TABLE IF NOT EXISTS education_profession
+CREATE TABLE IF NOT EXISTS specialty_profession
 (
-    education_profession_id SERIAL PRIMARY KEY,
-    education_program_id    INT NOT NULL,
+    specialty_profession_id SERIAL PRIMARY KEY,
+    specialty_id    INT NOT NULL,
     profession_id           INT NOT NULL,
-    FOREIGN KEY (education_program_id) REFERENCES education_program (education_program_id),
+    FOREIGN KEY (specialty_id) REFERENCES specialty (specialty_id),
     FOREIGN KEY (profession_id) REFERENCES profession (profession_id)
 );
 
 CREATE TABLE IF NOT EXISTS university
 (
     university_id   SERIAL PRIMARY KEY,
-    name_university VARCHAR(255) NOT NULL UNIQUE CHECK (name_university != ''),
+    university_name VARCHAR(255) NOT NULL UNIQUE CHECK (university_name != ''),
     area_id         INT          NOT NULL,
     address         VARCHAR(255) NOT NULL,
     phone           VARCHAR(255) NOT NULL,
@@ -50,13 +50,13 @@ CREATE TABLE IF NOT EXISTS university
 CREATE TABLE IF NOT EXISTS university_education
 (
     university_education_id SERIAL PRIMARY KEY,
-    education_program_id    INT NOT NULL,
+    specialty_id    INT NOT NULL,
     university_id           INT NOT NULL,
     recruitment_plan_budget INT,
     score_budget_basis      INT,
     recruitment_plan_paid   INT,
     score_paid_basis        INT,
     cost_per_year           INT,
-    FOREIGN KEY (education_program_id) REFERENCES education_program (education_program_id),
+    FOREIGN KEY (specialty_id) REFERENCES specialty (specialty_id),
     FOREIGN KEY (university_id) REFERENCES university (university_id)
 );
