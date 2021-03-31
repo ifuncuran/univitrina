@@ -22,7 +22,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "lint": "eslint './src/**/*.{js,jsx}'",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "yarn lint --fix"
   },
   "eslintConfig": {
     "root": true,
