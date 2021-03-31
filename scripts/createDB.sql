@@ -16,19 +16,19 @@ CREATE TABLE IF NOT EXISTS section
 CREATE TABLE IF NOT EXISTS training_direction
 (
     training_direction_id   SERIAL PRIMARY KEY,
+    section_id              INT          NOT NULL,
     training_direction_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (section_id) REFERENCES section (section_id),
     training_direction_code VARCHAR(8)   NOT NULL UNIQUE CHECK (training_direction_code != '')
 );
 
 CREATE TABLE IF NOT EXISTS specialty
 (
     specialty_id          SERIAL PRIMARY KEY,
-    section_id            INT          NOT NULL,
     training_direction_id INT          NOT NULL,
     specialty_name        VARCHAR(255) NOT NULL,
     specialty_code        VARCHAR(8)   NOT NULL UNIQUE CHECK (specialty_code != ''),
 --     degree                 VARCHAR(255) NOT NULL,
-    FOREIGN KEY (section_id) REFERENCES section (section_id),
     FOREIGN KEY (training_direction_id) REFERENCES training_direction (training_direction_id)
 );
 
