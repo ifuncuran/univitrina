@@ -14,8 +14,12 @@ import NoMatch from '../components/NoMatch';
 
 // import { createBrowserHistory } from 'history';
 
-/*  Навигацию по приложению наверное будем делать через хук useHistory()
-    Можно также использовать компонет Link как в примере ниже, но думаю это не совсем удобно */
+/*  Для реализации навигации предлагаю использовать react-router
+    доки https://reactrouter.com/
+    Навигацию по приложению наверное будем делать через хук useHistory()
+    Можно также использовать компонет Link как в примере ниже
+    или как указано в доках к MaterialUI https://material-ui.com/guides/composition/#link,
+    но думаю это не совсем удобно */
 
 const Button = () => {
   const setHistory = useHistory();
