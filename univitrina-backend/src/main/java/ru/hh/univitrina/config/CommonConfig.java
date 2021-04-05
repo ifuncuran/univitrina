@@ -12,11 +12,13 @@ import ru.hh.nab.hibernate.MappingConfig;
 import ru.hh.nab.hibernate.NabHibernateCommonConfig;
 import ru.hh.nab.hibernate.datasource.RoutingDataSource;
 import ru.hh.univitrina.client.HhApiClient;
+import ru.hh.univitrina.dao.UniversityDao;
 
 @Configuration
 @Import({
     NabHibernateCommonConfig.class,
-    HhApiClient.class
+    HhApiClient.class,
+    UniversityDao.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;
@@ -38,6 +40,8 @@ public class CommonConfig {
 
   @Bean
   MappingConfig mappingConfig() {
-    return new MappingConfig();
+    MappingConfig mappingConfig = new MappingConfig();
+    mappingConfig.addPackagesToScan("ru.hh.univitrina.entity");
+    return mappingConfig;
   }
 }
