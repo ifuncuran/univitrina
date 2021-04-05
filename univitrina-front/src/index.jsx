@@ -1,12 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
+import state from './initState';
 import './index.css';
-import App from './components/App/App';
+import App from './components/App';
 // import reportWebVitals from './reportWebVitals';
+
+// заготовка Store
+
+// для отладки redux нужен REDUX_DEVTOOLS
+// перед выпуском в прод  удалить
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  reducers,
+  state,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
