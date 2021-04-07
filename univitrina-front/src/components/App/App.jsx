@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import logo from './App_logo.svg';
 import './App.css';
-import Router from '../../router/index';
-import { incrementCounter } from '../../ actions';
+import Router from '../../router';
+import { incrementCounter } from '../../actions';
 
 // Пока для примера прикрутил роутер между header и footer
 // но потом в зависимости от дизайна переделаем
@@ -19,15 +18,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <Router />
+      <footer>
         <button type="button" onClick={hundleInc}>
           Counter=
           {counter}
         </button>
-      </header>
-      <Router />
-      <footer>Footer</footer>
+      </footer>
     </div>
   );
 }

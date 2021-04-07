@@ -1,11 +1,15 @@
+import './fonts/fonts.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import reducers from './reducers';
 import state from './initState';
 import './index.css';
 import App from './components/App';
+import theme from './style';
+
 // import reportWebVitals from './reportWebVitals';
 
 // заготовка Store
@@ -24,9 +28,11 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
