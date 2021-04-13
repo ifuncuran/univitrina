@@ -1,11 +1,10 @@
 import React from 'react';
 import Cards from './Cards';
+import Search from '../Search';
 
 export default () => (
   <>
-    <div>
-      <h2>Start Page</h2>
-    </div>
+    <Search />
     <Cards />
   </>
 );
