@@ -1,15 +1,13 @@
 import { Typography, Toolbar, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './style';
 import MainContainer from '../MainContainer';
+import useIsNotMobile from '../../hooks/useIsNotMobile/useIsNotMobile';
 
 function Footer() {
   const classes = useStyles();
-  const theme = useTheme();
-  const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
+  const isNotMobile = useIsNotMobile();
   const spacing = isNotMobile ? 4 : 2;
   return (
     <footer className={classes.root} position="static">
