@@ -23,13 +23,13 @@ public abstract class UnivitrinaTestBase {
 
   @AfterEach
   public void clearData() {
-      transactionalScope.write(() -> {
-        getSession().createNativeQuery("TRUNCATE university RESTART IDENTITY CASCADE").executeUpdate();
-        getSession().createNativeQuery("TRUNCATE specialty RESTART IDENTITY CASCADE").executeUpdate();
-        getSession().createNativeQuery("TRUNCATE training_direction RESTART IDENTITY CASCADE").executeUpdate();
-        getSession().createNativeQuery("TRUNCATE section RESTART IDENTITY CASCADE").executeUpdate();
-        getSession().createNativeQuery("TRUNCATE profession RESTART IDENTITY CASCADE").executeUpdate();
-      });
+    transactionalScope.write(() -> {
+      getSession().createNativeQuery("TRUNCATE university RESTART IDENTITY CASCADE").executeUpdate();
+      getSession().createNativeQuery("TRUNCATE specialty RESTART IDENTITY CASCADE").executeUpdate();
+      getSession().createNativeQuery("TRUNCATE training_direction RESTART IDENTITY CASCADE").executeUpdate();
+      getSession().createNativeQuery("TRUNCATE section RESTART IDENTITY CASCADE").executeUpdate();
+      getSession().createNativeQuery("TRUNCATE profession RESTART IDENTITY CASCADE").executeUpdate();
+    });
   }
 
   protected Session getSession(){
