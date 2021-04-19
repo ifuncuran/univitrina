@@ -11,10 +11,12 @@ import ru.hh.nab.datasource.DataSourceType;
 import ru.hh.nab.hibernate.MappingConfig;
 import ru.hh.nab.hibernate.NabHibernateCommonConfig;
 import ru.hh.nab.hibernate.datasource.RoutingDataSource;
+import ru.hh.univitrina.client.HhApiClient;
 
 @Configuration
 @Import({
     NabHibernateCommonConfig.class,
+    HhApiClient.class
 })
 public class CommonConfig {
   private final FileSettings fileSettings;
