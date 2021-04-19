@@ -1,35 +1,26 @@
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Hidden,
-  Button,
-  Grid,
-} from '@material-ui/core';
+import { Typography, Toolbar, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './style';
-import Nav from './HeaderNav';
 import MainContainer from '../MainContainer';
 
-function Header() {
+function Footer() {
   const classes = useStyles();
   const theme = useTheme();
   const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
   const spacing = isNotMobile ? 4 : 2;
   return (
-    <AppBar className={classes.root} position="static">
+    <footer className={classes.root} position="static">
       <MainContainer fixed={isNotMobile}>
         <Toolbar className={classes.toolbar}>
-          <Grid container spacing={spacing} className={classes.gridHeader}>
+          <Grid container spacing={spacing} className={classes.gridFooter}>
             <Grid
               className={classes.gridTitle}
               item
               xs="auto"
-              sm={6}
+              sm={12}
               md={3}
               lg={3}
             >
@@ -44,39 +35,22 @@ function Header() {
               </Button>
             </Grid>
             <Grid
+              className={classes.gridCopyright}
               item
-              className={classes.gridNav}
               xs="auto"
-              sm={1}
+              sm={12}
               md={7}
-              lg={6}
+              lg={9}
             >
-              <Nav />
-            </Grid>
-            <Grid
-              className={classes.gridIcon}
-              item
-              xs="auto"
-              sm={5}
-              md="auto"
-              lg="auto"
-            >
-              <Hidden only={['xs', 'md', 'lg']}>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  area-label="menu"
-                  className={classes.menuButton}
-                >
-                  <MenuIcon className={classes.menuButtonIcon} />
-                </IconButton>
-              </Hidden>
+              <Typography className={classes.copyright}>
+                HeadHunter School 2021
+              </Typography>
             </Grid>
           </Grid>
         </Toolbar>
       </MainContainer>
-    </AppBar>
+    </footer>
   );
 }
 
-export default Header;
+export default Footer;

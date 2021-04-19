@@ -7,15 +7,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FFFFFF',
   },
 
-  container: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4),
-    },
-  },
-
   toolbar: {
     paddingLeft: '0',
     paddingRight: '0',
@@ -34,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
+    padding: 0,
     color: fontColorBlack,
     textTransform: 'none',
     fontFamily: 'Raleway, Arial, sans-serif',
@@ -86,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   gridTitle: {
+    display: 'flex',
     [theme.breakpoints.down('md')]: {
-      display: 'flex',
       alignItems: 'center',
     },
   },
