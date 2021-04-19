@@ -8,9 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
-import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,13 +25,13 @@ public class Profession {
   @Column(name = "hhapi_id")
   private String hhapiId;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany()
   @JoinTable(
       name = "specialty_profession",
       joinColumns = @JoinColumn(name = "profession_id"),
       inverseJoinColumns = @JoinColumn(name = "specialty_id")
   )
-  private Set<Specialty> specialtySet = new HashSet<>();
+  private Set<Specialty> specialtySet;
 
   public Profession() {
   }
@@ -85,11 +83,12 @@ public class Profession {
       return false;
     }
     Profession that = (Profession) o;
-    return Objects.equals(name, that.name) && Objects.equals(hhapiId, that.hhapiId) && Objects.equals(specialtySet, that.specialtySet);
+    return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(hhapiId, that.hhapiId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, hhapiId, specialtySet);
+    return Objects.hash(name, hhapiId);
   }
-}
+
+ }
