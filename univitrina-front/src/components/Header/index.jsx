@@ -9,16 +9,14 @@ import {
 import { Link } from 'react-router-dom';
 import React from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './style';
 import Nav from './HeaderNav';
 import MainContainer from '../MainContainer';
+import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 
 function Header() {
   const classes = useStyles();
-  const theme = useTheme();
-  const isNotMobile = useMediaQuery(theme.breakpoints.up('md'));
+  const isNotMobile = useIsNotMobie();
   const spacing = isNotMobile ? 4 : 2;
   return (
     <AppBar className={classes.root} position="static">
@@ -63,7 +61,7 @@ function Header() {
             >
               <Hidden only={['xs', 'md', 'lg']}>
                 <IconButton
-                  edge="start"
+                  edge="end"
                   color="inherit"
                   area-label="menu"
                   className={classes.menuButton}

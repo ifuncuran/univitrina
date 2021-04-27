@@ -3,6 +3,7 @@ import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 // глобальные переменные стиля, если будет много вынесем в отдельный файл
 export const fontColorBlack = '#023047';
+export const colorYellow = '#FFB703';
 
 const BREAKPOINTS = {
   xs: 0,
