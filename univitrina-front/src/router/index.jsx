@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Professions from '../components/Professions';
-import Specializations from '../components/Specializations';
-import Universities from '../components/Universities';
-import Main from '../components/Main';
+import Professions from '../pages/Professions';
+import Specializations from '../pages/Specializations';
+import Universities from '../pages/Universities';
+import UniversitiesAreas from '../pages/UniversitiesAreas';
+import UniversityPage from '../pages/UniversityPage';
+import Main from '../pages/Main';
 import NoMatch from '../components/NoMatch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -49,8 +51,14 @@ export default function PageRouter() {
         <Route path="/specializations">
           <Specializations />
         </Route>
-        <Route path="/universities">
+        <Route path="/universities-areas">
+          <UniversitiesAreas />
+        </Route>
+        <Route exact path="/universities">
           <Universities />
+        </Route>
+        <Route path="/universities/:id">
+          <UniversityPage />
         </Route>
         <Route path="*">
           <NoMatch />

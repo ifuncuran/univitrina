@@ -2,15 +2,15 @@ import { Typography, Grid, Button, Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import useStyles from './style';
-import MainContainer from '../../MainContainer';
-import useIsNotMobie from '../../../hooks/useIsNotMobile/useIsNotMobile';
+import MainContainer from '../MainContainer';
+import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 
 const cardsData = [
   {
     title: 'ВУЗы по регионам России',
     description: 'Поиск высшего образования в\u00A0ВУЗах России',
     backgroundSrc: '/images/img_university.jpg',
-    href: '/universities',
+    href: '/universities-areas',
   },
   {
     title: 'Список специальностей',

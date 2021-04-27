@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { fontColorBlack } from '../../style';
+import { colorText } from '../../style';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   menuButton: {
-    color: fontColorBlack,
+    color: colorText,
   },
 
   menuButtonIcon: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     padding: 0,
-    color: fontColorBlack,
+    color: colorText,
     textTransform: 'none',
     fontFamily: 'Raleway, Arial, sans-serif',
     fontSize: '24px',
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navButton: {
-    color: fontColorBlack,
+    color: colorText,
     textTransform: 'none',
     fontStyle: 'normal',
     fontSize: '12px',

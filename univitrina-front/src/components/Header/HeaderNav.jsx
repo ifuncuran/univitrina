@@ -6,7 +6,7 @@ import useStyles from './style';
 const headersData = [
   {
     label: 'Университеты',
-    href: '/universities',
+    href: '/universities-areas',
   },
   {
     label: 'Специальности',
