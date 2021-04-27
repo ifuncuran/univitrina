@@ -8,7 +8,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +31,7 @@ public class University {
             joinColumns = @JoinColumn(name = "university_id"),
             inverseJoinColumns = @JoinColumn(name = "specialty_id")
     )
-    private Set<Specialty> specialtySet = new HashSet<>();
+    private Set<Specialty> specialtySet;
 
     public University() {
     }
@@ -44,6 +43,10 @@ public class University {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -75,11 +78,11 @@ public class University {
             return false;
         }
         University that = (University) o;
-        return Objects.equals(name, that.name) && Objects.equals(specialtySet, that.specialtySet);
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, specialtySet);
+        return Objects.hash(name);
     }
 }
