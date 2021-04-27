@@ -66,4 +66,15 @@ public class UniversityDao extends GenericDao {
         .setMaxResults(perPage)
         .list();
   }
+
+  public List<University> getSearchSuggestion(String prefix, Integer limit) {
+    return getSession()
+        .createQuery("SELECT u FROM University u " +
+                "WHERE LOWER(u.name) LIKE LOWER(:prefix) " +
+                "ORDER BY u.name",
+            University.class)
+        .setParameter("prefix", prefix + "%")
+        .setMaxResults(limit)
+        .list();
+  }
 }

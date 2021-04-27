@@ -93,6 +93,20 @@ public class UniversityDaoTest extends UnivitrinaTestBase {
     assertEqualsUniversityList(expectedUniversities, actualUniversities);
   }
 
+  @Test
+  public void getSearchSuggestionTest() {
+    List<University> expectedUniversities = getExpectedList();
+    List<University> actualUniversities = getSearchSuggestion("una", 10);
+    assertEqualsUniversityList(expectedUniversities, actualUniversities);
+  }
+
+  @Test
+  public void getSearchSuggestionLimitTest() {
+    List<University> expectedUniversities = getExpectedList().subList(0, 2);
+    List<University> actualUniversities = getSearchSuggestion("una", 2);
+    assertEqualsUniversityList(expectedUniversities, actualUniversities);
+  }
+
   private void insertData() {
     Section section1 = new Section("Section1");
     Section section2 = new Section("Section2");
@@ -134,6 +148,10 @@ public class UniversityDaoTest extends UnivitrinaTestBase {
 
   private List<University> getFilteredBySection(int page, int perPage, int sectionId) {
     return transactionalScope.read(() -> universityDao.getFilteredBySection(page, perPage, sectionId));
+  }
+
+  private List<University> getSearchSuggestion(String prefix, int limit) {
+    return transactionalScope.read(() -> universityDao.getSearchSuggestion(prefix, limit));
   }
 
   private List<University> getExpectedList() {
