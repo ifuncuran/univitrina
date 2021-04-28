@@ -2,6 +2,7 @@ package ru.hh.univitrina.config;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -13,12 +14,14 @@ import ru.hh.nab.hibernate.NabHibernateCommonConfig;
 import ru.hh.nab.hibernate.datasource.RoutingDataSource;
 import ru.hh.univitrina.client.HhApiClient;
 import ru.hh.univitrina.dao.UniversityDao;
+import ru.hh.univitrina.dao.ProfessionDao;
 
 @Configuration
 @Import({
     NabHibernateCommonConfig.class,
     HhApiClient.class,
     UniversityDao.class,
+    ProfessionDao.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;
