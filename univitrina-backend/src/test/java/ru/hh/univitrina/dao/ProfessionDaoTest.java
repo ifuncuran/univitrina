@@ -1,7 +1,6 @@
 package ru.hh.univitrina.dao;
 
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.hh.univitrina.UnivitrinaTestBase;
 import ru.hh.univitrina.entity.Profession;
@@ -11,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static ru.hh.univitrina.dao.CreateObjectsUtil.createProfession;
 
 public class ProfessionDaoTest extends UnivitrinaTestBase {
 
@@ -20,11 +20,11 @@ public class ProfessionDaoTest extends UnivitrinaTestBase {
   @Transactional
   @Test
   public void getSearchSuggestionTest() {
-    Profession profession0 = createProfession("PROFGF");
-    Profession profession1 = createProfession("pRoFg");
-    Profession profession2 = createProfession("profhg");
-    Profession profession3 = createProfession("p r o f");
-    Profession profession4 = createProfession(" prof ");
+    Profession profession0 = createProfession("PROFGF", "1");
+    Profession profession1 = createProfession("pRoFg", "1");
+    Profession profession2 = createProfession("profhg", "1");
+    Profession profession3 = createProfession("p r o f", "1");
+    Profession profession4 = createProfession(" prof ", "1");
 
     saveObjects(profession0, profession1, profession2, profession3, profession4);
 
@@ -37,11 +37,11 @@ public class ProfessionDaoTest extends UnivitrinaTestBase {
 
   @Test
   public void getSearchSuggestionLimitTest() {
-    Profession profession0 = createProfession("prof");
-    Profession profession1 = createProfession("prof");
-    Profession profession2 = createProfession("prof");
-    Profession profession3 = createProfession("prof");
-    Profession profession4 = createProfession("prof");
+    Profession profession0 = createProfession("prof", "1");
+    Profession profession1 = createProfession("prof", "1");
+    Profession profession2 = createProfession("prof", "1");
+    Profession profession3 = createProfession("prof", "1");
+    Profession profession4 = createProfession("prof", "1");
 
     saveObjects(profession0, profession1, profession2, profession3, profession4);
 
@@ -55,13 +55,5 @@ public class ProfessionDaoTest extends UnivitrinaTestBase {
   @NotNull
   private List<Profession> getActualProfessionList(String prefix, int limit) {
     return transactionalScope.read(() -> professionDao.getSearchSuggestion(prefix, limit));
-  }
-
-  @NotNull
-  private Profession createProfession(String name) {
-    Profession profession = new Profession();
-    profession.setName(name);
-    profession.setHhapiId("1");
-    return profession;
   }
 }

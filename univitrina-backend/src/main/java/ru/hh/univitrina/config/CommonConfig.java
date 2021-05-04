@@ -15,6 +15,7 @@ import ru.hh.nab.hibernate.datasource.RoutingDataSource;
 import ru.hh.univitrina.client.HhApiClient;
 import ru.hh.univitrina.dao.UniversityDao;
 import ru.hh.univitrina.dao.ProfessionDao;
+import ru.hh.univitrina.dao.SpecialtyDao;
 
 @Configuration
 @Import({
@@ -22,6 +23,7 @@ import ru.hh.univitrina.dao.ProfessionDao;
     HhApiClient.class,
     UniversityDao.class,
     ProfessionDao.class,
+    SpecialtyDao.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;

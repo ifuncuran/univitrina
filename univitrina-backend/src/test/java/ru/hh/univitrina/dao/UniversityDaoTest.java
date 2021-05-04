@@ -14,6 +14,9 @@ import ru.hh.univitrina.entity.University;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static ru.hh.univitrina.dao.CreateObjectsUtil.createSpecialty;
+import static ru.hh.univitrina.dao.CreateObjectsUtil.createTrainingDirection;
+import static ru.hh.univitrina.dao.CreateObjectsUtil.createUniversity;
 
 public class UniversityDaoTest extends UnivitrinaTestBase {
 
@@ -160,30 +163,6 @@ public class UniversityDaoTest extends UnivitrinaTestBase {
     University university3 = createUniversity(3, "unA3", 1);
     University university4 = createUniversity(4, "unA4", 1);
     return List.of(university1, university2, university3, university4);
-  }
-
-  private TrainingDirection createTrainingDirection(String name, String code, Section section) {
-    TrainingDirection tDirection = new TrainingDirection(name, code);
-    tDirection.setSection(section);
-    return tDirection;
-  }
-
-  private Specialty createSpecialty(String name, String code, TrainingDirection trainingDirection) {
-    Specialty specialty = new Specialty(name, code);
-    specialty.setTrainingDirection(trainingDirection);
-    return specialty;
-  }
-
-  private University createUniversity(Integer id, String name, Integer areaId) {
-    University university = new University(name, areaId);
-    university.setId(id);
-    return university;
-  }
-
-  private University createUniversity(String name, Integer areaId, Set<Specialty> specialtySet) {
-    University university = new University(name, areaId);
-    university.setSpecialtySet(specialtySet);
-    return university;
   }
 
   private boolean equalUniversities(University u1, University u2) {
