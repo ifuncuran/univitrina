@@ -133,7 +133,7 @@ public class SpecialtyDaoTest extends UnivitrinaTestBase {
     University u2 = new University("n2", 2);
     u1.setSpecialtySet(Set.of(specialty1, specialty2, specialty3));
 
-    saveObjects(section1, section2, tDirection1, tDirection2, p1, p2, specialty1, specialty2, specialty3, specialty4,u1, u2);
+    saveObjects(section1, section2, tDirection1, tDirection2, p1, p2, specialty1, specialty2, specialty3, specialty4, u1, u2);
   }
 
   private Specialty getById(int id) {
