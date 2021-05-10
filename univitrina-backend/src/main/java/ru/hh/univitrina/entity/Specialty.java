@@ -106,6 +106,6 @@ public class Specialty {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, code, professionSet, universitySet);
+        return Objects.hash(name, code, universitySet);
     }
 }
