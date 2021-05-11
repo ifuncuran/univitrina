@@ -45,4 +45,20 @@ public class CreateObjectsUtil {
     profession.setHhapiId(hhapiId);
     return profession;
   }
+
+  static Profession createProfession(String name, String hhapiId, Set<Specialty> specialtySet) {
+    Profession profession = new Profession();
+    profession.setName(name);
+    profession.setHhapiId(hhapiId);
+    profession.setSpecialtySet(specialtySet);
+    return profession;
+  }
+
+  static Profession createProfession(Integer id, String name, String hhapiId) {
+    Profession profession = new Profession();
+    profession.setId(id);
+    profession.setName(name);
+    profession.setHhapiId(hhapiId);
+    return profession;
+  }
 }
