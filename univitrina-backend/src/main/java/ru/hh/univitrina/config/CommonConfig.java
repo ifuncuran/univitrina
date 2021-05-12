@@ -16,6 +16,10 @@ import ru.hh.univitrina.client.HhApiClient;
 import ru.hh.univitrina.dao.UniversityDao;
 import ru.hh.univitrina.dao.ProfessionDao;
 import ru.hh.univitrina.dao.SpecialtyDao;
+import ru.hh.univitrina.resource.SuggestResource;
+import ru.hh.univitrina.service.ProfessionService;
+import ru.hh.univitrina.service.SpecialtyService;
+import ru.hh.univitrina.service.UniversityService;
 
 @Configuration
 @Import({
@@ -24,6 +28,10 @@ import ru.hh.univitrina.dao.SpecialtyDao;
     UniversityDao.class,
     ProfessionDao.class,
     SpecialtyDao.class,
+    UniversityService.class,
+    ProfessionService.class,
+    SpecialtyService.class,
+    SuggestResource.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;
