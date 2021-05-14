@@ -2,6 +2,7 @@ package ru.hh.univitrina.dao;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import javax.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ public class SpecialtyDaoTest extends UnivitrinaTestBase {
   @Test
   public void getByIdTest() {
     Specialty expected = createSpecialty(1, "SpA1", "02.03.01");
-    Specialty actual = getById(1);
+    Specialty actual = getById(1).get();
 
     assertTrue(equalSpecialty(expected, actual));
   }
@@ -136,7 +137,7 @@ public class SpecialtyDaoTest extends UnivitrinaTestBase {
     saveObjects(section1, section2, tDirection1, tDirection2, p1, p2, specialty1, specialty2, specialty3, specialty4, u1, u2);
   }
 
-  private Specialty getById(int id) {
+  private Optional<Specialty> getById(int id) {
     return transactionalScope.read(() -> specialtyDao.getById(Specialty.class, id));
   }
 

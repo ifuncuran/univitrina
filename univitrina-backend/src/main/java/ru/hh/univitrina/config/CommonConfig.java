@@ -19,6 +19,8 @@ import ru.hh.univitrina.dao.SpecialtyDao;
 import ru.hh.univitrina.resource.ProfessionResource;
 import ru.hh.univitrina.resource.SpecialtyResource;
 import ru.hh.univitrina.resource.SuggestResource;
+import ru.hh.univitrina.resource.UniversityResource;
+import ru.hh.univitrina.service.AreaService;
 import ru.hh.univitrina.service.ProfessionService;
 import ru.hh.univitrina.service.SpecialtyService;
 import ru.hh.univitrina.service.UniversityService;
@@ -33,9 +35,11 @@ import ru.hh.univitrina.service.UniversityService;
     UniversityService.class,
     ProfessionService.class,
     SpecialtyService.class,
+    AreaService.class,
     SuggestResource.class,
     ProfessionResource.class,
     SpecialtyResource.class,
+    UniversityResource.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;

@@ -3,10 +3,17 @@ package ru.hh.univitrina.dto;
 public class ProfessionDto {
   private Integer id;
   private String name;
+  private String description;
 
   public ProfessionDto(Integer id, String name) {
     this.id = id;
     this.name = name;
+  }
+
+  public ProfessionDto(Integer id, String name, String description) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
   }
 
   public Integer getId() {
@@ -23,5 +30,13 @@ public class ProfessionDto {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

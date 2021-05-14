@@ -2,6 +2,7 @@ package ru.hh.univitrina.dao;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import javax.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ public class UniversityDaoTest extends UnivitrinaTestBase {
   @Test
   public void getByIdTest() {
     University expectedUniversity = createUniversity(1, "unA1", 1);
-    University actualUniversity = getUniversityById(1);
+    University actualUniversity = getUniversityById(1).get();
     assertTrue(equalUniversities(expectedUniversity, actualUniversity));
   }
 
@@ -133,7 +134,7 @@ public class UniversityDaoTest extends UnivitrinaTestBase {
         university1, university2, university3, university4, university5, university6, university7);
   }
 
-  private University getUniversityById(int id) {
+  private Optional<University> getUniversityById(int id) {
     return transactionalScope.read(() -> universityDao.getById(University.class, id));
   }
 

@@ -1,5 +1,6 @@
 package ru.hh.univitrina.dao;
 
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -11,8 +12,9 @@ public class GenericDao {
     this.sessionFactory = sessionFactory;
   }
 
-  public <T> T getById(Class<T> clazz, Integer id) {
-    return getSession().get(clazz, id);
+  public <T> Optional<T> getById(Class<T> clazz, Integer id) {
+    T value = getSession().get(clazz, id);
+    return value == null ? Optional.empty() : Optional.of(value);
   }
 
   public void save(Object o) {

@@ -9,9 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import ru.hh.univitrina.dto.ProfessionDto;
-import ru.hh.univitrina.dto.SpecialtyDto;
-import ru.hh.univitrina.dto.UniversityDto;
+import ru.hh.univitrina.dto.ProfessionShortDto;
+import ru.hh.univitrina.dto.SpecialtyShortDto;
+import ru.hh.univitrina.dto.UniversityShortDto;
 import ru.hh.univitrina.service.ProfessionService;
 import ru.hh.univitrina.service.SpecialtyService;
 import ru.hh.univitrina.service.UniversityService;
@@ -35,8 +35,8 @@ public class SuggestResource {
   @GET
   @Path("/university")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<UniversityDto> getUniversitySuggest(@QueryParam("prefix") String prefix,
-                                       @DefaultValue("10") @QueryParam("limit") Integer limit) {
+  public List<UniversityShortDto> getUniversitySuggest(@QueryParam("prefix") String prefix,
+                                                       @DefaultValue("10") @QueryParam("limit") Integer limit) {
     validate(prefix, limit);
     return universityService.getSearchSuggestion(prefix.trim(), limit);
   }
@@ -44,8 +44,8 @@ public class SuggestResource {
   @GET
   @Path("/specialty")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<SpecialtyDto> getSpecialtySuggest(@QueryParam("prefix") String prefix,
-                                      @DefaultValue("10") @QueryParam("limit") Integer limit) {
+  public List<SpecialtyShortDto> getSpecialtySuggest(@QueryParam("prefix") String prefix,
+                                                     @DefaultValue("10") @QueryParam("limit") Integer limit) {
     validate(prefix, limit);
     return specialtyService.getSearchSuggestion(prefix.trim(), limit);
   }
@@ -53,8 +53,8 @@ public class SuggestResource {
   @GET
   @Path("/profession")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<ProfessionDto> getProfessionSuggest(@QueryParam("prefix") String prefix,
-                                       @DefaultValue("10") @QueryParam("limit") Integer limit) {
+  public List<ProfessionShortDto> getProfessionSuggest(@QueryParam("prefix") String prefix,
+                                                       @DefaultValue("10") @QueryParam("limit") Integer limit) {
     validate(prefix, limit);
     return professionService.getSearchSuggestion(prefix.trim(), limit);
   }

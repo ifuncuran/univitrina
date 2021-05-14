@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import ru.hh.univitrina.dao.SpecialtyDao;
 import ru.hh.univitrina.dto.SpecialtyDto;
+import ru.hh.univitrina.dto.SpecialtyShortDto;
 import ru.hh.univitrina.mapper.SpecialtyMapper;
 
 public class SpecialtyService {
@@ -18,9 +19,9 @@ public class SpecialtyService {
   }
 
   @Transactional
-  public List<SpecialtyDto> getSearchSuggestion(String prefix, Integer limit) {
+  public List<SpecialtyShortDto> getSearchSuggestion(String prefix, Integer limit) {
     return specialtyDao.getSearchSuggestion(prefix, limit).stream()
-        .map(SpecialtyMapper::mapToDto)
+        .map(SpecialtyMapper::mapToShortDto)
         .collect(Collectors.toList());
   }
 
