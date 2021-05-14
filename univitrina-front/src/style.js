@@ -2,9 +2,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 // глобальные переменные стиля, если будет много вынесем в отдельный файл
-export const fontColorBlack = '#023047';
-export const colorDarkYellow = '#F57C0B';
-export const colorYellow = '#FFB703';
+export const colorText = '#023047';
+export const colorActionHover = '#F57C0B';
+export const colorAction = '#FFB703';
+export const colorBackground = '#F3F2F2';
+export const colorTextLink = '#219EBC';
 
 const BREAKPOINTS = {
   xs: 0,
@@ -37,7 +39,19 @@ const myTheme = {
 const myTheme = {
   typography: {
     fontFamily: 'Montserrat, sans-serif',
+    body1: {
+      color: colorText,
+      fontSize: '16px',
+      fontWeight: '500',
+    },
+    h3: {
+      color: colorText,
+      fontSize: '22px',
+      fontWeight: '600',
+      textDecoration: 'none',
+    },
   },
 };
 const theme = createMuiTheme(myTheme, breakpointsFull);
+
 export default theme;

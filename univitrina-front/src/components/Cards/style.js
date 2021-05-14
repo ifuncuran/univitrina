@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { fontColorBlack, colorYellow } from '../../../style';
+import { colorText, colorAction } from '../../style';
 
 const CardsContainerPaddingBottom = '80px';
 const CardTitlePaddingTop = '10px';
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundColor: colorYellow,
+    backgroundColor: colorAction,
     borderRadius: '8px',
     height: '200px',
     width: '100%',
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.only('md')]: {
       fontSize: TitleFontSizeTablet,
     },
-    color: fontColorBlack,
+    color: colorText,
     textDecoration: 'none',
     textTransform: 'none',
     fontWeight: '600',
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
-    color: fontColorBlack,
+    color: colorText,
     textDecoration: 'none',
     textTransform: 'none',
     fontWeight: '500',

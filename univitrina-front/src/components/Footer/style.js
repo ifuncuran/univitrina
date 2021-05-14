@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { fontColorBlack } from '../../style';
+import { colorText } from '../../style';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: 'none',
-    backgroundColor: fontColorBlack,
+    backgroundColor: colorText,
   },
 
   toolbar: {

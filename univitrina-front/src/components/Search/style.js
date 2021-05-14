@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import background from './Rectangle29.jpg';
-import { colorDarkYellow, colorYellow } from '../../style';
+import { colorActionHover, colorAction } from '../../style';
 
 const titleColor = '#ffffff';
 
@@ -189,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
       padding: paddingForSelectElementsLg,
     },
     '&:hover': {
-      backgroundColor: colorYellow,
+      backgroundColor: colorAction,
     },
   },
 
@@ -253,7 +253,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '23px',
     fontWeight: '700',
     textTransform: 'none',
-    backgroundColor: colorYellow,
+    backgroundColor: colorAction,
     borderRadius: '8px',
     height: '60px',
     transitionProperty: 'background',
@@ -269,7 +269,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
     '&:hover': {
-      backgroundColor: colorDarkYellow,
+      backgroundColor: colorActionHover,
     },
   },
 
