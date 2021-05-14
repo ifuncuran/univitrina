@@ -25,6 +25,12 @@ public class University {
     @Column(name = "area_id")
     private Integer areaId;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "extended_description")
+    private String extendedDescription;
+
     @ManyToMany()
     @JoinTable(
             name = "university_specialty",
@@ -59,6 +65,22 @@ public class University {
 
     public Integer getAreaId() {
         return areaId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getExtendedDescription() {
+        return extendedDescription;
+    }
+
+    public void setExtendedDescription(String extendedDescription) {
+        this.extendedDescription = extendedDescription;
     }
 
     public Set<Specialty> getSpecialtySet() {

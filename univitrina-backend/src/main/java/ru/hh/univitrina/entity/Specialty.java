@@ -26,6 +26,9 @@ public class Specialty {
     @Column(name = "specialty_code")
     private String code;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "training_direction_id", nullable = false)
     private TrainingDirection trainingDirection;
@@ -65,6 +68,14 @@ public class Specialty {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public TrainingDirection getTrainingDirection() {

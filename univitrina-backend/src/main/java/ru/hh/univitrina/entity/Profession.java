@@ -25,6 +25,9 @@ public class Profession {
   @Column(name = "hhapi_id")
   private String hhapiId;
 
+  @Column(name = "description")
+  private String description;
+
   @ManyToMany()
   @JoinTable(
       name = "specialty_profession",
@@ -64,6 +67,14 @@ public class Profession {
 
   public void setHhapiId(String hhapiId) {
     this.hhapiId = hhapiId;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public Set<Specialty> getSpecialtySet() {
