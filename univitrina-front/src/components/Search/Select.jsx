@@ -1,19 +1,17 @@
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { Box, TextField, InputAdornment, MenuItem } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import PropTypes from 'prop-types';
 import useStyles from './style';
 import useToggleState from '../../hooks/useToggleState';
 
-export default () => {
+const Select = (props) => {
   const wrapperRef = useRef(null);
   const classes = useStyles();
   const [stateMenu, toggleState, setStateForce] = useToggleState(false);
-  const [directions, setDirections] = useState([
-    'Специальность',
-    'Профессия',
-    'ВУЗ',
-  ]);
+  const { directions, setDirections } = props;
+  const valueSelect = directions[0].name;
 
   const directionItemList = useMemo(
     () =>
@@ -22,7 +20,7 @@ export default () => {
           event.preventDefault();
           const modifedDirections = [
             element,
-            ...directions.filter((item) => item !== element),
+            ...directions.filter(({ name }) => name !== element.name),
           ];
           toggleState();
           setDirections(modifedDirections);
@@ -31,12 +29,12 @@ export default () => {
         const isNeedIcon = index === 0;
         return (
           <MenuItem
-            key={element}
+            key={element.value}
             onClick={handleChooseValue}
             className={classes.selectItem}
-            value={element}
+            value={element.value}
           >
-            {element}
+            {element.name}
             {isNeedIcon && (
               <InputAdornment position="end">
                 <KeyboardArrowUpIcon className={classes.selectIcon} />
@@ -45,9 +43,14 @@ export default () => {
           </MenuItem>
         );
       }),
-    [classes.selectItem, classes.selectIcon, directions, toggleState]
+    [
+      classes.selectItem,
+      classes.selectIcon,
+      setDirections,
+      directions,
+      toggleState,
+    ]
   );
-
   useEffect(() => {
     /**
      Селект закрывается при клике вне элемента
@@ -79,7 +82,7 @@ export default () => {
             ),
             className: classes.selectInput,
           }}
-          value={directions[0]}
+          value={valueSelect}
         />
         <Box
           display={menuDisplayProprty}
@@ -91,3 +94,15 @@ export default () => {
     </Box>
   );
 };
+
+Select.defaultProps = {
+  directions: [],
+  setDirections: null,
+};
+
+Select.propTypes = {
+  directions: PropTypes.arrayOf(PropTypes.object),
+  setDirections: PropTypes.func,
+};
+
+export default Select;

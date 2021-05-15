@@ -1,16 +1,49 @@
-import React from 'react';
-import { Button, Grid, Paper, Typography } from '@material-ui/core';
+import React, { useCallback, useState } from 'react';
+import { Button, debounce, Grid, Paper, Typography } from '@material-ui/core';
 import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 import useStyles from './style';
 import Suggest from './Suggest';
 import Select from './Select';
 import MainContainer from '../MainContainer';
+import requestDataForSuggest from '../../common/requestDataForSuggest';
 
 export default () => {
   const classes = useStyles();
   const isNotMobile = useIsNotMobie();
   const spacing = isNotMobile ? 4 : 2;
   const university = isNotMobile ? 'университетах' : 'ВУЗах';
+
+  const [directions, setDirections] = useState([
+    { name: 'Специальность', value: '/specialty' },
+    { name: 'Профессия', value: '/profession' },
+    { name: 'ВУЗ', value: '/university' },
+  ]);
+
+  const firstElement = directions[0];
+
+  const [inputSuggestValue, setSuggestInputValue] = useState('');
+  const [suggests, setSuggests] = useState([]);
+
+  const request = useCallback(
+    async (value) => {
+      if (value === '') {
+        setSuggests([]);
+      } else {
+        const list = await requestDataForSuggest(value, firstElement.value);
+        setSuggests(list);
+      }
+      setSuggestInputValue(value);
+    },
+    [firstElement.value]
+  );
+
+  const debounceRequest = debounce(request, 50);
+  const handleChangeValue = useCallback(debounceRequest, [debounceRequest]);
+  const handleChangeSelect = useCallback((value) => {
+    setDirections(value);
+    setSuggests([]);
+  }, []);
+
   return (
     <section className={classes.root}>
       <Paper className={classes.paper}>
@@ -34,10 +67,17 @@ export default () => {
               <form className={classes.formSearch}>
                 <Grid container>
                   <Grid item sm={12} md={3}>
-                    <Select />
+                    <Select
+                      directions={directions}
+                      setDirections={handleChangeSelect}
+                    />
                   </Grid>
                   <Grid item sm={12} md={7} lg={5}>
-                    <Suggest />
+                    <Suggest
+                      inputValue={inputSuggestValue}
+                      setInputValue={handleChangeValue}
+                      suggests={suggests}
+                    />
                   </Grid>
                   <Grid
                     className={classes.gridSubmitBtn}
