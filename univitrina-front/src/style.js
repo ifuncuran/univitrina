@@ -7,6 +7,10 @@ export const colorActionHover = '#F57C0B';
 export const colorAction = '#FFB703';
 export const colorBackground = '#F3F2F2';
 export const colorTextLink = '#219EBC';
+export const colorTextPrompt = 'rgba(2, 48, 71, 0.5)';
+
+export const smallGap = '20px';
+export const largeGap = '50px';
 
 const BREAKPOINTS = {
   xs: 0,
@@ -39,19 +43,38 @@ const myTheme = {
 const myTheme = {
   typography: {
     fontFamily: 'Montserrat, sans-serif',
-    body1: {
-      color: colorText,
-      fontSize: '16px',
-      fontWeight: '500',
-    },
-    h3: {
-      color: colorText,
-      fontSize: '22px',
-      fontWeight: '600',
-      textDecoration: 'none',
-    },
   },
 };
 const theme = createMuiTheme(myTheme, breakpointsFull);
+
+theme.typography.body1 = {
+  fontFamily: 'Montserrat, sans-serif',
+  color: colorText,
+  fontSize: '14px',
+  fontWeight: '500',
+  [theme.breakpoints.up('md')]: {
+    fontSize: '16px',
+  },
+};
+
+theme.typography.h3 = {
+  fontFamily: 'Montserrat, sans-serif',
+  color: colorText,
+  fontSize: '22px',
+  fontWeight: '600',
+  textDecoration: 'none',
+};
+
+theme.typography.h2 = {
+  fontFamily: 'Montserrat, sans-serif',
+  color: colorText,
+  fontWeight: 'bold',
+  textDecoration: 'none',
+  fontSize: '24px',
+  lineHeight: '1.1',
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '30px',
+  },
+};
 
 export default theme;
