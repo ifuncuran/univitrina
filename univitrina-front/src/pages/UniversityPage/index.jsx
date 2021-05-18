@@ -1,12 +1,15 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import SpecializationCard from '../../components/SpecializationCard';
+import UniversityInfo from '../../components/UniversityInfo';
 import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 import MainContainer from '../../components/MainContainer';
+import useStyles from './style';
 
 const universitiesExtendedExampleData = [
   {
-    title: 'МГУ',
+    title: 'Московский государственный университет имени М.В.Ломоносова',
     description: 'Лучший Московский ВУЗ',
     area: 'MoscowRegion',
     id: 1,
@@ -27,7 +30,7 @@ const universitiesExtendedExampleData = [
     ],
   },
   {
-    title: 'ЛГУ',
+    title: 'Ленинградский государственный университет имени А.С.Пушкина',
     description: 'Лучший Санкт-Петербургский ВУЗ',
     area: 'LeningradRegion',
     id: 2,
@@ -49,11 +52,13 @@ const universitiesExtendedExampleData = [
     ],
   },
   {
-    title: 'СГУ',
+    title:
+      'Уральский федеральный университет имени первого Президента России Б.Н. Ельцина',
     description: 'Лучший Екатеринбургский ВУЗ',
     area: 'SverdlovskRegion',
     id: 3,
-    extendedDescription: 'эту информацию вы не видели на предыдущей странице',
+    extendedDescription:
+      'Уральский федеральный университет создан в контексте реализации концепции долгосрочного развития Российской Федерации как один из глобальных лидеров образования и научно-инновационных разработок. Миссия университета — повышение международной конкурентоспособности Уральского региона и обеспечение реиндустриализации, наращивание человеческого и научно-технического потенциала, сбалансированное обновление традиционных и развитие постиндустриальных отраслей экономики России, в первую очередь на территории Уральского федерального округа.',
     specializationList: [
       {
         id: 1,
@@ -92,32 +97,30 @@ function ListCards(specializationList) {
 }
 
 function UniversityPage() {
+  const classes = useStyles();
+
   const isNotMobile = useIsNotMobie();
 
   const { id } = useParams();
-
   const UniversityData = getUniversityData(id);
 
   const SpecializationList = ListCards(UniversityData.specializationList);
 
   return (
     <section position="static">
+      <UniversityInfo
+        title={UniversityData.title}
+        description={UniversityData.description}
+        extendedDescription={UniversityData.extendedDescription}
+      />
       <MainContainer fixed={isNotMobile}>
-        <p>
-          <strong>ID: {id} </strong>
-        </p>
-        <p>{UniversityData.title}</p>
-        <p>{UniversityData.description}</p>
-        <p>{UniversityData.extendedDescription}</p>
+        <Typography className={classes.title} variant="h2">
+          Специальности
+        </Typography>
         {SpecializationList}
       </MainContainer>
     </section>
   );
 }
 
-export default () => (
-  <>
-    <p>Страница института</p>
-    <UniversityPage />
-  </>
-);
+export default () => <UniversityPage />;

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { colorBackground, colorTextLink } from '../../style';
+import { colorBackground, colorTextLink, largeGap } from '../../style';
 
 const specializationCardHeight = '200px';
 const cardBorderRadius = '8px';
@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   specializationCard: {
     width: '100%',
     margin: '0',
-    marginBottom: '50px',
+    marginBottom: largeGap,
     borderRadius: cardBorderRadius,
   },
   specializationCard__imageContainer: {

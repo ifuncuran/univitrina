@@ -6,19 +6,20 @@ import useQuery from '../../hooks/useQuery';
 
 const universitiesExampleData = [
   {
-    title: 'МГУ',
+    title: 'Московский государственный университет имени М.В.Ломоносова',
     description: 'Лучший Московский ВУЗ',
     area: 'MoscowRegion',
     id: 1,
   },
   {
-    title: 'ЛГУ',
+    title: 'Ленинградский государственный университет имени А.С.Пушкина',
     description: 'Лучший Санкт-Петербургский ВУЗ',
     area: 'LeningradRegion',
     id: 2,
   },
   {
-    title: 'СГУ',
+    title:
+      'Уральский федеральный университет имени первого Президента России Б.Н. Ельцина',
     description: 'Лучший Екатеринбургский ВУЗ',
     area: 'SverdlovskRegion',
     id: 3,
