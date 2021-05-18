@@ -31,7 +31,7 @@ function Cards() {
   const isNotMobile = useIsNotMobie();
   const spacing = isNotMobile ? 4 : 2;
 
-  const ListCards = cardsData.map(
+  const listCards = cardsData.map(
     ({ title, description, backgroundSrc, href }) => (
       <Grid key={href} item xs="auto" sm={12} md={4} lg={4}>
         <Card className={classes.gridCard}>
@@ -62,7 +62,7 @@ function Cards() {
     <section className={classes.root} position="static">
       <MainContainer fixed={isNotMobile}>
         <Grid container spacing={spacing}>
-          {ListCards}
+          {listCards}
         </Grid>
       </MainContainer>
     </section>
