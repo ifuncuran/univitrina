@@ -6,7 +6,7 @@ import UniversityInfo from '../../components/UniversityInfo';
 import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 import MainContainer from '../../components/MainContainer';
 import useStyles from './style';
-import getUniversityData from '../../common/getUniversityData';
+import getUniversitiesData from '../../common/getUniversitiesData';
 
 function listCards(specializationList) {
   return specializationList.map(({ id, name, code, description }) => (
@@ -26,7 +26,7 @@ function UniversityPage() {
   const isNotMobile = useIsNotMobie();
 
   const { id } = useParams();
-  const UniversityData = getUniversityData(id);
+  const UniversityData = getUniversitiesData(id);
 
   const SpecializationList = listCards(UniversityData.specializationList);
 

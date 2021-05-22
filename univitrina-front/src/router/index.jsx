@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Professions from '../pages/Professions';
-import Specializations from '../pages/Specializations';
-import Universities from '../pages/Universities';
+import ProfessionsList from '../pages/ProfessionsList';
+import SpecializationsList from '../pages/SpecializationsList';
+import UniversitiesList from '../pages/UniversitiesList';
 import UniversitiesAreas from '../pages/UniversitiesAreas';
 import UniversityPage from '../pages/UniversityPage';
 import SpecializationPage from '../pages/SpecializationPage';
@@ -47,10 +47,10 @@ export default function PageRouter() {
           <Main />
         </Route>
         <Route path="/professions">
-          <Professions />
+          <ProfessionsList />
         </Route>
         <Route exact path="/specializations">
-          <Specializations />
+          <SpecializationsList />
         </Route>
         <Route path="/specializations/:id">
           <SpecializationPage />
@@ -59,7 +59,7 @@ export default function PageRouter() {
           <UniversitiesAreas />
         </Route>
         <Route exact path="/universities">
-          <Universities />
+          <UniversitiesList />
         </Route>
         <Route path="/universities/:id">
           <UniversityPage />

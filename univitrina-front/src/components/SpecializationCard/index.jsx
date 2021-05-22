@@ -36,12 +36,7 @@ function SpecializationCard({ specializationId, title, code, description }) {
   const ListProfessions = useMemo(
     () =>
       professionsBySpecialization.map(({ id, name }) => (
-        <ListItem
-          button
-          component={Link}
-          to={`/professions/${id.toString()}`}
-          key={id}
-        >
+        <ListItem button component={Link} to={`/professions/${id}`} key={id}>
           <ListItemText primary={name} />
         </ListItem>
       )),
@@ -66,7 +61,7 @@ function SpecializationCard({ specializationId, title, code, description }) {
         <Button
           disableRipple
           color="inherit"
-          to={`/specializations/${specializationId.toString()}`}
+          to={`/specializations/${specializationId}`}
           component={Link}
           className={classes.specializationCard__image}
           style={{
@@ -89,7 +84,7 @@ function SpecializationCard({ specializationId, title, code, description }) {
       >
         <Box className={classes.specializationCard__content}>
           <Typography
-            to={`/specializations/${specializationId.toString()}`}
+            to={`/specializations/${specializationId}`}
             component={Link}
             variant="h3"
             className={classes.specializationCard__title}
