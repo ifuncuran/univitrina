@@ -23,4 +23,14 @@ public class ProfessionService {
         .map(ProfessionMapper::mapToDto)
         .collect(Collectors.toList());
   }
+
+  @Transactional
+  public List<ProfessionDto> getFilteredBySpecialty(Integer page, Integer perPage, Integer specialtyId) {
+    return professionDao
+            .getFilteredBySpecialty(page, perPage, specialtyId)
+            .stream()
+            .map(ProfessionMapper::mapToDto)
+            .collect(Collectors.toList());
+  }
+
 }
