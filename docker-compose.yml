@@ -1,0 +1,9 @@
+version: '3'
+services:
+  univitrina-frontend:
+    image: "nginx:1.20.1-alpine"
+    container_name: univitrina-frontend
+    network_mode: host
+    volumes:
+      - "./univitrina-front/build/://usr/share/nginx/html:ro"
+      - "./univitrina-front/nginx.conf://etc/nginx/conf.d/default.conf:ro"    
