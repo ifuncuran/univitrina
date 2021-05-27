@@ -46,7 +46,7 @@ public class CreateObjectsUtil {
     return profession;
   }
 
-  static Profession createProfession(String name, String hhapiId, Set<Specialty> specialtySet) {
+  public static Profession createProfession(String name, String hhapiId, Set<Specialty> specialtySet) {
     Profession profession = new Profession();
     profession.setName(name);
     profession.setHhapiId(hhapiId);
@@ -54,7 +54,7 @@ public class CreateObjectsUtil {
     return profession;
   }
 
-  static Profession createProfession(Integer id, String name, String hhapiId) {
+  public static Profession createProfession(Integer id, String name, String hhapiId) {
     Profession profession = new Profession();
     profession.setId(id);
     profession.setName(name);
