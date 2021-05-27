@@ -6,6 +6,7 @@ import UniversitiesList from '../pages/UniversitiesList';
 import UniversitiesAreas from '../pages/UniversitiesAreas';
 import UniversityPage from '../pages/UniversityPage';
 import SpecializationPage from '../pages/SpecializationPage';
+import ProfessionPage from '../pages/ProfessionPage';
 import Main from '../pages/Main';
 import NoMatch from '../components/NoMatch';
 import Header from '../components/Header';
@@ -46,8 +47,11 @@ export default function PageRouter() {
         <Route exact path="/">
           <Main />
         </Route>
-        <Route path="/professions">
+        <Route exact path="/professions">
           <ProfessionsList />
+        </Route>
+        <Route path="/professions/:id">
+          <ProfessionPage />
         </Route>
         <Route exact path="/specializations">
           <SpecializationsList />
