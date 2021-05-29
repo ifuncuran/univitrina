@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   colorBackground,
   colorTextPrompt,
-  smallGap,
+  middleGap,
   largeGap,
 } from '../../style';
 
@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   UniversityInfo__title: {
-    paddingTop: smallGap,
-    paddingBottom: smallGap,
+    paddingTop: middleGap,
+    paddingBottom: middleGap,
   },
 
   UniversityInfo__description: {
-    paddingTop: smallGap,
+    paddingTop: middleGap,
     marginBottom: largeGap,
   },
 }));

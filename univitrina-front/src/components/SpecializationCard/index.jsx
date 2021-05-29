@@ -1,6 +1,6 @@
 import { Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
@@ -10,64 +10,26 @@ import Box from '@material-ui/core/Box';
 import classNames from 'classnames';
 import useStyles from './style';
 import declensionByNumber from '../../common/declensionByNumber';
-
-const ProfessionsBySpecializationExampleData = [
-  {
-    specializationId: 1,
-    professionsList: [
-      {
-        id: 1,
-        name: 'Аналитик данных',
-      },
-      {
-        id: 2,
-        name: 'Криптограф',
-      },
-    ],
-  },
-  {
-    specializationId: 2,
-    professionsList: [
-      {
-        id: 3,
-        name: 'Программист',
-      },
-      {
-        id: 4,
-        name: 'Консультант по SAP',
-      },
-    ],
-  },
-  {
-    specializationId: 3,
-    professionsList: [
-      {
-        id: 5,
-        name: 'Инженер-технолог',
-      },
-    ],
-  },
-];
-
-// в этой функции будем доставать данные с бэка, а пока заглушка:
-function getProfessionsBySpecialization(id) {
-  return ProfessionsBySpecializationExampleData.filter(
-    (specialization) => Number(specialization.specializationId) === Number(id)
-  )[0].professionsList;
-}
+import getSpecializationData from '../../common/getSpecializationData';
 
 function SpecializationCard({ specializationId, title, code, description }) {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [
+    professionsBySpecialization,
+    setProfessionsBySpecialization,
+  ] = useState([]);
 
   const handleClick = useCallback(() => {
     setIsOpen((currentState) => !currentState);
   }, []);
 
-  const professionsBySpecialization = getProfessionsBySpecialization(
-    specializationId
-  );
+  useEffect(() => {
+    setProfessionsBySpecialization(
+      getSpecializationData(specializationId).professionsList
+    );
+  }, [specializationId]);
 
   const countProfessions = professionsBySpecialization.length;
 
@@ -109,7 +71,7 @@ function SpecializationCard({ specializationId, title, code, description }) {
           className={classes.specializationCard__image}
           style={{
             backgroundImage: `url(/images/studying/${
-              specializationId % 5
+              (specializationId % 5) + 1
             }.jpg)`,
           }}
         />
