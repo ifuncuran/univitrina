@@ -6,5 +6,7 @@
 Запуск  
 `mvn clean install exec:java`
 
+`mvn clean install -Pdocker`
+
 Проверка доступности сервиса  
 `curl localhost:4000/status`

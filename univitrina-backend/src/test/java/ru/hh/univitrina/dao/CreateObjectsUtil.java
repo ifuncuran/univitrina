@@ -54,7 +54,7 @@ public class CreateObjectsUtil {
     return profession;
   }
 
-  static Profession createProfession(Integer id, String name, String hhapiId) {
+  public static Profession createProfession(Integer id, String name, String hhapiId) {
     Profession profession = new Profession();
     profession.setId(id);
     profession.setName(name);

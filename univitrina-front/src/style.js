@@ -9,7 +9,8 @@ export const colorBackground = '#F3F2F2';
 export const colorTextLink = '#219EBC';
 export const colorTextPrompt = 'rgba(2, 48, 71, 0.5)';
 
-export const smallGap = '20px';
+export const smallGap = '10px';
+export const middleGap = '20px';
 export const largeGap = '50px';
 
 const BREAKPOINTS = {
