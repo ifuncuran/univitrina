@@ -22,7 +22,7 @@ class ProfessionResourceTest extends UnivitrinaTestBase {
 
     private static final String PROFESSION_URL = "/professions/specialty";
 
-    private final ObjectMapper OM = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     private void init() {
@@ -70,11 +70,11 @@ class ProfessionResourceTest extends UnivitrinaTestBase {
     }
 
     private String getExpectedResponse() throws JsonProcessingException {
-        return OM.writeValueAsString(getProfessions());
+        return objectMapper.writeValueAsString(getProfessions());
     }
 
     private String getExpectedSecondPageResponse() throws JsonProcessingException {
-        return OM.writeValueAsString(getProfessions().subList(2, 4));
+        return objectMapper.writeValueAsString(getProfessions().subList(2, 4));
     }
 
     private List<ProfessionDto> getProfessions() {
