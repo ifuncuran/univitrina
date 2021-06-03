@@ -8,9 +8,9 @@ import javax.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.hh.univitrina.UnivitrinaTestBase;
-import ru.hh.univitrina.dto.ProfessionDto;
-import ru.hh.univitrina.dto.SpecialtyDto;
-import ru.hh.univitrina.dto.UniversityDto;
+import ru.hh.univitrina.dto.ProfessionShortDto;
+import ru.hh.univitrina.dto.SpecialtyShortDto;
+import ru.hh.univitrina.dto.UniversityShortDto;
 import ru.hh.univitrina.entity.Profession;
 import ru.hh.univitrina.entity.Section;
 import ru.hh.univitrina.entity.Specialty;
@@ -173,11 +173,11 @@ class SuggestResourceTest extends UnivitrinaTestBase {
     return objectMapper.writeValueAsString(getUniversityDtoList().subList(0, 2));
   }
 
-  private List<UniversityDto> getUniversityDtoList() {
-    UniversityDto university1 = new UniversityDto(1, "unA1");
-    UniversityDto university2 = new UniversityDto(2, "unA2");
-    UniversityDto university3 = new UniversityDto(3, "unA3");
-    UniversityDto university4 = new UniversityDto(4, "unA4");
+  private List<UniversityShortDto> getUniversityDtoList() {
+    UniversityShortDto university1 = new UniversityShortDto(1, "unA1");
+    UniversityShortDto university2 = new UniversityShortDto(2, "unA2");
+    UniversityShortDto university3 = new UniversityShortDto(3, "unA3");
+    UniversityShortDto university4 = new UniversityShortDto(4, "unA4");
     return List.of(university1, university2, university3, university4);
   }
 
@@ -189,10 +189,10 @@ class SuggestResourceTest extends UnivitrinaTestBase {
     return objectMapper.writeValueAsString(getSpecialtyDtoList().subList(0, 2));
   }
 
-  private List<SpecialtyDto> getSpecialtyDtoList() {
-    SpecialtyDto specialty1 = new SpecialtyDto(1, "SpA1");
-    SpecialtyDto specialty2 = new SpecialtyDto(2, "SpA2");
-    SpecialtyDto specialty3 = new SpecialtyDto(3, "SpA3");
+  private List<SpecialtyShortDto> getSpecialtyDtoList() {
+    SpecialtyShortDto specialty1 = new SpecialtyShortDto(1, "SpA1");
+    SpecialtyShortDto specialty2 = new SpecialtyShortDto(2, "SpA2");
+    SpecialtyShortDto specialty3 = new SpecialtyShortDto(3, "SpA3");
     return List.of(specialty1, specialty2, specialty3);
   }
 
@@ -204,10 +204,10 @@ class SuggestResourceTest extends UnivitrinaTestBase {
     return objectMapper.writeValueAsString(getProfessionDtoList().subList(0, 2));
   }
 
-  private List<ProfessionDto> getProfessionDtoList() {
-    ProfessionDto profession1 = new ProfessionDto(1, "PROFGF");
-    ProfessionDto profession2 = new ProfessionDto(2, "pRoFg");
-    ProfessionDto profession3 = new ProfessionDto(3, "profhg");
+  private List<ProfessionShortDto> getProfessionDtoList() {
+    ProfessionShortDto profession1 = new ProfessionShortDto(1, "PROFGF");
+    ProfessionShortDto profession2 = new ProfessionShortDto(2, "pRoFg");
+    ProfessionShortDto profession3 = new ProfessionShortDto(3, "profhg");
     return List.of(profession1, profession2, profession3);
   }
 }

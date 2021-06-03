@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import ru.hh.univitrina.dao.ProfessionDao;
 import ru.hh.univitrina.dto.ProfessionDto;
+import ru.hh.univitrina.dto.ProfessionShortDto;
 import ru.hh.univitrina.mapper.ProfessionMapper;
 
 public class ProfessionService {
@@ -18,9 +19,9 @@ public class ProfessionService {
   }
 
   @Transactional
-  public List<ProfessionDto> getSearchSuggestion(String prefix, Integer limit) {
+  public List<ProfessionShortDto> getSearchSuggestion(String prefix, Integer limit) {
     return professionDao.getSearchSuggestion(prefix, limit).stream()
-        .map(ProfessionMapper::mapToDto)
+        .map(ProfessionMapper::mapToShortDto)
         .collect(Collectors.toList());
   }
 

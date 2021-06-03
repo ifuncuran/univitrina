@@ -1,6 +1,10 @@
 package ru.hh.univitrina.dao;
 
+import java.util.List;
 import java.util.Set;
+import ru.hh.univitrina.dto.SpecialtyDto;
+import ru.hh.univitrina.dto.TrainingDirectionDto;
+import ru.hh.univitrina.dto.UniversityDto;
 import ru.hh.univitrina.entity.Profession;
 import ru.hh.univitrina.entity.Section;
 import ru.hh.univitrina.entity.Specialty;
@@ -21,6 +25,13 @@ public class CreateObjectsUtil {
     return specialty;
   }
 
+  public static Specialty createSpecialty(String name, String code, String description,
+                                          TrainingDirection trainingDirection) {
+    Specialty specialty = createSpecialty(name, code, trainingDirection);
+    specialty.setDescription(description);
+    return specialty;
+  }
+
   public static TrainingDirection createTrainingDirection(String name, String code, Section section) {
     TrainingDirection tDirection = new TrainingDirection(name, code);
     tDirection.setSection(section);
@@ -36,6 +47,14 @@ public class CreateObjectsUtil {
   public static University createUniversity(String name, Integer areaId, Set<Specialty> specialtySet) {
     University university = new University(name, areaId);
     university.setSpecialtySet(specialtySet);
+    return university;
+  }
+
+  public static University createUniversity(String name, Integer areaId, String description,
+                                            String extendedDescription, Set<Specialty> specialtySet) {
+    University university = createUniversity(name, areaId, specialtySet);
+    university.setDescription(description);
+    university.setExtendedDescription(extendedDescription);
     return university;
   }
 
@@ -60,5 +79,22 @@ public class CreateObjectsUtil {
     profession.setName(name);
     profession.setHhapiId(hhapiId);
     return profession;
+  }
+
+  public static UniversityDto createUniversityDto(Integer id, String name, String areaName, String description,
+                                                  String extendedDescription, List<SpecialtyDto> specialtyDtoList) {
+    UniversityDto universityDto = new UniversityDto(id, name);
+    universityDto.setArea(areaName);
+    universityDto.setDescription(description);
+    universityDto.setExtendedDescription(extendedDescription);
+    universityDto.setSpecialtyList(specialtyDtoList);
+    return universityDto;
+  }
+
+  public static SpecialtyDto createSpecialtyDto(Integer id, String name, String code, String description,
+                                                TrainingDirectionDto tDirectionDto) {
+    SpecialtyDto specialtyDto = new SpecialtyDto(id, name, code, description);
+    specialtyDto.setTrainingDirection(tDirectionDto);
+    return specialtyDto;
   }
 }

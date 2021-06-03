@@ -78,11 +78,11 @@ public class SpecialtyResourceTest extends UnivitrinaTestBase {
   }
 
   private List<SpecialtyDto> getSpecialties(){
-    SpecialtyDto specialty1 = new SpecialtyDto(1, "Sp1");
-    SpecialtyDto specialty2 = new SpecialtyDto(2, "Sp2");
-    SpecialtyDto specialty3 = new SpecialtyDto(3, "Sp3");
-    SpecialtyDto specialty4 = new SpecialtyDto(4, "Sp4");
-    SpecialtyDto specialty6 = new SpecialtyDto(6, "Sp6");
+    SpecialtyDto specialty1 = new SpecialtyDto(1, "Sp1", "SpC1", null);
+    SpecialtyDto specialty2 = new SpecialtyDto(2, "Sp2", "SpC2", null);
+    SpecialtyDto specialty3 = new SpecialtyDto(3, "Sp3", "SpC3", null);
+    SpecialtyDto specialty4 = new SpecialtyDto(4, "Sp4", "SpC4", null);
+    SpecialtyDto specialty6 = new SpecialtyDto(6, "Sp6", "SpC6", null);
 
     return List.of(specialty1, specialty2, specialty3, specialty4, specialty6);
   }
