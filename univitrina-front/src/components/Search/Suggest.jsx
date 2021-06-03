@@ -1,35 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Box } from '@material-ui/core';
 import useStyles from './style';
 
-// example
-const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-  { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
-  { title: 'The Good, the Bad and the Ugly', year: 1966 },
-  { title: 'Fight Club', year: 1999 },
-  { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-];
-
-export default function FreeSolo() {
+function Suggest(props) {
   const classes = useStyles();
+  const { inputValue, setInputValue, suggests } = props;
+
   return (
     <Autocomplete
       freeSolo
+      value={inputValue}
+      onChange={(event, newValue) => {
+        setInputValue(newValue);
+      }}
+      inputValue={inputValue}
+      onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      onOpen={() => {
+        setInputValue(inputValue);
+      }}
       classes={{
         root: classes.suggest,
         input: classes.suggestInput,
         option: classes.suggestOption,
       }}
       disableClearable
-      options={top100Films.map((option) => option.title)}
+      options={suggests.map((option) => option.name)}
+      renderOption={(option) => (
+        <Box style={{ overflow: 'hidden' }}>{option}</Box>
+      )}
       renderInput={(params) => (
         <TextField
           /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -46,3 +49,21 @@ export default function FreeSolo() {
     />
   );
 }
+
+Suggest.defaultProps = {
+  value: null,
+  setValue: null,
+  inputValue: null,
+  setInputValue: null,
+  suggests: null,
+};
+
+Suggest.propTypes = {
+  value: PropTypes.string,
+  setValue: PropTypes.func,
+  inputValue: PropTypes.string,
+  setInputValue: PropTypes.func,
+  suggests: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default Suggest;
