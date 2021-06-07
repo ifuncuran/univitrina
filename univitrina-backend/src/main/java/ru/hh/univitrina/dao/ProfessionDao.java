@@ -49,4 +49,46 @@ public class ProfessionDao extends GenericDao {
         .list();
   }
 
+  public List<Profession> getFilteredByProfessionNameAndSpecialtyId(String professionName, Integer specialtyId) {
+    return getSession()
+        .createQuery("SELECT p FROM Profession p " +
+                "JOIN FETCH p.specialtySet sp " +
+                "WHERE sp.id = :specialtyId " +
+                "AND p.name LIKE :professionName " +
+                "ORDER BY p.name",
+            Profession.class)
+        .setParameter("specialtyId", specialtyId)
+        .setParameter("professionName", "%" + professionName + "%")
+        .list();
+  }
+
+  public List<Profession> getFilteredByProfessionName(String professionName) {
+    return getSession()
+            .createQuery("SELECT p FROM Profession p " +
+                            "WHERE p.name LIKE :professionName " +
+                            "ORDER BY p.name",
+                    Profession.class)
+            .setParameter("professionName", "%" + professionName + "%")
+            .list();
+  }
+
+  public List<Profession> getFilteredBySpecialtyId(Integer specialtyId) {
+    return getSession()
+            .createQuery("SELECT p FROM Profession p " +
+                            "JOIN FETCH p.specialtySet sp " +
+                            "WHERE sp.id = :specialtyId " +
+                            "ORDER BY p.name",
+                    Profession.class)
+            .setParameter("specialtyId", specialtyId)
+            .list();
+  }
+
+  public List<Profession> getAll() {
+    return getSession()
+            .createQuery("SELECT p FROM Profession p " +
+                            "ORDER BY p.name",
+                    Profession.class)
+            .list();
+  }
+
 }

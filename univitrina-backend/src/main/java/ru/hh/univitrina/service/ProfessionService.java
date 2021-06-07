@@ -34,4 +34,44 @@ public class ProfessionService {
             .collect(Collectors.toList());
   }
 
+  @Transactional
+  public List<ProfessionDto> getFilteredByProfessionNameAndSpecialtyId(String professionName, Integer specialtyId) {
+
+    return professionDao
+            .getFilteredByProfessionNameAndSpecialtyId(professionName, specialtyId)
+            .stream()
+            .map(ProfessionMapper::mapToDto)
+            .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<ProfessionDto> getFilteredByProfessionName(String professionName) {
+
+    return professionDao
+            .getFilteredByProfessionName(professionName)
+            .stream()
+            .map(ProfessionMapper::mapToDto)
+            .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<ProfessionDto> getFilteredBySpecialtyId(Integer specialtyId) {
+
+    return professionDao
+            .getFilteredBySpecialtyId(specialtyId)
+            .stream()
+            .map(ProfessionMapper::mapToDto)
+            .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<ProfessionDto> getAllProfessions() {
+
+    return professionDao
+            .getAll()
+            .stream()
+            .map(ProfessionMapper::mapToDto)
+            .collect(Collectors.toList());
+  }
+
 }
