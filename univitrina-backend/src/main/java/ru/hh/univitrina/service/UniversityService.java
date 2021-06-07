@@ -41,6 +41,15 @@ public class UniversityService {
         .map(this::convertToDto);
   }
 
+  @Transactional
+  public List<UniversityDto> getUniversityList(Integer areaId, Integer specialtyId, String text,
+                                               Integer page, Integer perPage) {
+
+    return universityDao.getSearchByCriteria(areaId, specialtyId, text, page, perPage).stream()
+        .map(this::convertToDto)
+        .collect(Collectors.toList());
+  }
+
   private UniversityDto convertToDto(University university) {
     List<SpecialtyDto> specialties = university.getSpecialtySet().stream()
         .sorted((o1, o2) -> Objects.compare(o1.getCode(), o2.getCode(), String::compareTo))
