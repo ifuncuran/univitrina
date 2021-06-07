@@ -2,6 +2,8 @@ package ru.hh.univitrina.dao;
 
 import java.util.List;
 import java.util.Set;
+
+import ru.hh.univitrina.dto.ProfessionDto;
 import ru.hh.univitrina.dto.SpecialtyDto;
 import ru.hh.univitrina.dto.TrainingDirectionDto;
 import ru.hh.univitrina.dto.UniversityDto;
@@ -95,6 +97,13 @@ public class CreateObjectsUtil {
                                                 TrainingDirectionDto tDirectionDto) {
     SpecialtyDto specialtyDto = new SpecialtyDto(id, name, code, description);
     specialtyDto.setTrainingDirection(tDirectionDto);
+    return specialtyDto;
+  }
+
+  public static SpecialtyDto createSpecialtyDto(Integer id, String name, String code, String description,
+                                                TrainingDirectionDto tDirectionDto, List<ProfessionDto> professionDtoList) {
+    SpecialtyDto specialtyDto = createSpecialtyDto(id, name, code, description, tDirectionDto);
+    specialtyDto.setProfessionList(professionDtoList);
     return specialtyDto;
   }
 }

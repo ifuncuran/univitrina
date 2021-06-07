@@ -67,6 +67,22 @@ public class SpecialtyDaoTest extends UnivitrinaTestBase {
   }
 
   @Test
+  public void getFilteredBySectionTest() {
+    List<Specialty> expected = getExpectedList();
+    List<Specialty> actual = getFilteredBySection(DEFAULT_PAGE, DEFAULT_PER_PAGE, 1);
+
+    assertEqualsSpecialtyList(expected, actual);
+  }
+
+  @Test
+  public void getFilteredBySectionWithPaginationTest() {
+    List<Specialty> expected = getExpectedList().subList(2, 3);
+    List<Specialty> actual = getFilteredBySection(PAGE, PER_PAGE, 1);
+
+    assertEqualsSpecialtyList(expected, actual);
+  }
+
+  @Test
   public void getFilteredByProfessionTest() {
     List<Specialty> expected = getExpectedList();
     List<Specialty> actual = getFilteredByProfession(DEFAULT_PAGE, DEFAULT_PER_PAGE, 1);
@@ -147,6 +163,10 @@ public class SpecialtyDaoTest extends UnivitrinaTestBase {
 
   private List<Specialty> getFilteredByTrainingDirection(int page, int perPage, int trDirId) {
     return transactionalScope.read(() -> specialtyDao.getFilteredByTrainingDirection(page, perPage, trDirId));
+  }
+
+  private List<Specialty> getFilteredBySection(int page, int perPage, int sectionId) {
+    return transactionalScope.read(() -> specialtyDao.getFilteredBySection(page, perPage, sectionId));
   }
 
   private List<Specialty> getFilteredByProfession(int page, int perPage, int professionId) {
