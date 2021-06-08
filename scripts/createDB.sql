@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS profession
     profession_id   SERIAL PRIMARY KEY,
     hhapi_id        VARCHAR(15)  NOT NULL UNIQUE CHECK (hhapi_id != ''),
     profession_name VARCHAR(255) NOT NULL UNIQUE CHECK (profession_name != ''),
-    description     VARCHAR(255)
+    description     VARCHAR(1023)
 );
 
 CREATE TABLE IF NOT EXISTS section
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS specialty
     training_direction_id INT          NOT NULL,
     specialty_name        VARCHAR(255) NOT NULL,
     specialty_code        VARCHAR(8)   NOT NULL UNIQUE CHECK (specialty_code != ''),
-    description           VARCHAR(255),
+    description           VARCHAR(1023),
 --     degree                 VARCHAR(255) NOT NULL,
     FOREIGN KEY (training_direction_id) REFERENCES training_direction (training_direction_id)
 );
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS university
     university_id   SERIAL PRIMARY KEY,
     university_name VARCHAR(255) NOT NULL UNIQUE CHECK (university_name != ''),
     area_id         INT          NOT NULL,
-    description     VARCHAR(255),
+    description     VARCHAR(1023),
     extended_description VARCHAR(65535)
 --     address         VARCHAR(255) NOT NULL,
 --     phone           VARCHAR(255) NOT NULL,
