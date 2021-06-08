@@ -1,9 +1,16 @@
 package ru.hh.univitrina.dao;
 
 import org.hibernate.SessionFactory;
+import ru.hh.univitrina.entity.Specialty;
 import ru.hh.univitrina.entity.University;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UniversityDao extends GenericDao {
@@ -76,5 +83,33 @@ public class UniversityDao extends GenericDao {
         .setParameter("prefix", prefix + "%")
         .setMaxResults(limit)
         .list();
+  }
+
+  public List<University> getSearchByCriteria(Integer areaId, Integer specialtyId, String text, Integer page, Integer perPage) {
+    CriteriaBuilder cb = getSession().getCriteriaBuilder();
+    CriteriaQuery<University> universityCriteria = cb.createQuery(University.class);
+    Root<University> universityRoot = universityCriteria.from(University.class);
+
+    universityCriteria.select(universityRoot);
+
+    List<Predicate> predicates = new ArrayList<>();
+    if (areaId != null) {
+      predicates.add(cb.equal(universityRoot.get("areaId"), areaId.toString()));
+    }
+    if (specialtyId != null) {
+      Join<University, Specialty> specialtyJoin = universityRoot.join("specialtySet");
+      predicates.add(cb.equal(specialtyJoin.get("id"), specialtyId));
+    }
+    if (text != null && !text.equals("")) {
+      predicates.add(cb.like(cb.lower(universityRoot.get("name")), "%" + text.toLowerCase() + "%"));
+    }
+
+    universityCriteria.where(predicates.toArray(new Predicate[0]));
+
+    return getSession()
+        .createQuery(universityCriteria)
+        .setFirstResult(page * perPage)
+        .setMaxResults(perPage)
+        .getResultList();
   }
 }
