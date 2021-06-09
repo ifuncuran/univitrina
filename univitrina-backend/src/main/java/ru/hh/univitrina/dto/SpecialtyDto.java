@@ -1,11 +1,14 @@
 package ru.hh.univitrina.dto;
 
+import java.util.List;
+
 public class SpecialtyDto {
   private Integer id;
   private String name;
   private String code;
   private String description;
   private TrainingDirectionDto trainingDirection;
+  private List<ProfessionDto> professionList;
 
   public SpecialtyDto(Integer id, String name) {
     this.id = id;
@@ -57,5 +60,13 @@ public class SpecialtyDto {
 
   public void setTrainingDirection(TrainingDirectionDto trainingDirection) {
     this.trainingDirection = trainingDirection;
+  }
+
+  public List<ProfessionDto> getProfessionList() {
+    return professionList;
+  }
+
+  public void setProfessionList(List<ProfessionDto> professionList) {
+    this.professionList = professionList;
   }
 }
