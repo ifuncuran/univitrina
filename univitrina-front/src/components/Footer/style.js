@@ -1,10 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { colorText } from '../../style';
+import { colorText, largeGap } from '../../style';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: 'none',
     backgroundColor: colorText,
+    marginTop: largeGap,
   },
 
   toolbar: {

@@ -5,21 +5,22 @@ import { Link } from 'react-router-dom';
 const AreasData = [
   {
     title: 'Московская область',
-    area: 'MoscowRegion',
+    area: 1,
   },
   {
     title: 'Ленинградская область',
-    area: 'LeningradRegion',
+    area: 2,
   },
   {
     title: 'Свердловская область',
-    area: 'SverdlovskRegion',
+    area: 3,
   },
 ];
 
 function UniversitiesAreas() {
   const ListAreas = AreasData.map(({ title, area }) => (
     <Button
+      key={area}
       to={{ pathname: '/universities', search: `area=${area}` }}
       component={Link}
     >
