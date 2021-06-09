@@ -35,6 +35,14 @@ public class ProfessionResource {
     }
 
     @GET
+    @Path("/{professionId}")
+    @Produces(MediaType.APPLICATION_JSON) public ProfessionDto getProfessionById(
+            @PathParam("professionId") Integer professionId) {
+
+        return professionService.getProfessionById(professionId);
+    }
+
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ProfessionDto> getFilteredBySearchCriteria(@QueryParam("profession_name") String professionName,
                                                            @QueryParam("specialty_id") Integer specialtyId) {

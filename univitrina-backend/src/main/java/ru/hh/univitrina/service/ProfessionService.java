@@ -19,6 +19,12 @@ public class ProfessionService {
   }
 
   @Transactional
+  public ProfessionDto getProfessionById(Integer professionId) {
+
+    return ProfessionMapper.mapToDto(professionDao.getProfessionById(professionId));
+  }
+
+  @Transactional
   public List<ProfessionShortDto> getSearchSuggestion(String prefix, Integer limit) {
     return professionDao.getSearchSuggestion(prefix, limit).stream()
         .map(ProfessionMapper::mapToShortDto)

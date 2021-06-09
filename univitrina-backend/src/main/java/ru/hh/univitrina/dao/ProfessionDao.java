@@ -13,6 +13,15 @@ public class ProfessionDao extends GenericDao {
     super(sessionFactory);
   }
 
+  public Profession getProfessionById(Integer professionId) {
+    return getSession()
+            .createQuery("SELECT p FROM Profession p " +
+                    "WHERE p.id = :id",
+                Profession.class)
+            .setParameter("id", professionId)
+            .getSingleResult();
+  }
+
   public List<Profession> getSearchSuggestion(String prefix, Integer limit) {
     return getSession()
         .createQuery("SELECT p FROM Profession p " +
