@@ -77,6 +77,7 @@ export default () => {
                       inputValue={inputSuggestValue}
                       setInputValue={handleChangeValue}
                       suggests={suggests}
+                      pagePath={firstElement.value}
                     />
                   </Grid>
                   <Grid
