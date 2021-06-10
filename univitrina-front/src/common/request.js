@@ -1,6 +1,7 @@
-import getSpecializationData from './getSpecializationData';
-
 const pathApi = 'api';
+const { host } = window.location;
+const { protocol } = window.location;
+const baseUrl = `${protocol}//${host}`;
 
 export const requestDataForSuggest = async (prefix, direction) => {
   try {
@@ -16,7 +17,13 @@ export const requestDataForSuggest = async (prefix, direction) => {
 };
 
 export const requestDataForSpecializationPage = async (id) => {
-  // пока заглушка
-  const result = await getSpecializationData(id);
-  return result;
+  try {
+    const path = `/specialties/${id}`;
+    const url = `${baseUrl}/${pathApi}${path}`;
+    const response = await fetch(url);
+    const list = await response.json();
+    return list ?? null;
+  } catch {
+    return null;
+  }
 };

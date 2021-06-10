@@ -27,9 +27,9 @@ function SpecializationPage() {
           <Description
             name={SpecializationData.name}
             description={SpecializationData.description}
-            id={SpecializationData.specializationId}
+            id={SpecializationData.id}
           />
-          <ProfessionCards cards={SpecializationData.professionsList} />
+          <ProfessionCards cards={SpecializationData.professionList} />
         </>
       )}
       {!SpecializationData && <NoMatch />}
