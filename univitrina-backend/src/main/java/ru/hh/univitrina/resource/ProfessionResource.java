@@ -34,4 +34,27 @@ public class ProfessionResource {
         return professionService.getFilteredBySpecialty(page, perPage, specialtyId);
     }
 
+    @GET
+    @Path("/{professionId}")
+    @Produces(MediaType.APPLICATION_JSON) public ProfessionDto getProfessionById(
+            @PathParam("professionId") Integer professionId) {
+
+        return professionService.getProfessionById(professionId);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ProfessionDto> getFilteredBySearchCriteria(@QueryParam("profession_name") String professionName,
+                                                           @QueryParam("specialty_id") Integer specialtyId) {
+        if (professionName != null && specialtyId != null) {
+            return professionService.getFilteredByProfessionNameAndSpecialtyId(professionName, specialtyId);
+        } else if (professionName != null) {
+            return professionService.getFilteredByProfessionName(professionName);
+        } else if (specialtyId != null) {
+            return professionService.getFilteredBySpecialtyId(specialtyId);
+        } else {
+            return professionService.getAllProfessions();
+        }
+    }
+
 }

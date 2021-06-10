@@ -2,7 +2,11 @@ package ru.hh.univitrina.mapper;
 
 import ru.hh.univitrina.dto.ProfessionDto;
 import ru.hh.univitrina.dto.ProfessionShortDto;
+import ru.hh.univitrina.dto.SpecialtyDto;
 import ru.hh.univitrina.entity.Profession;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProfessionMapper {
   public static ProfessionShortDto mapToShortDto(Profession profession) {
@@ -10,6 +14,13 @@ public class ProfessionMapper {
   }
 
   public static ProfessionDto mapToDto(Profession profession) {
-    return new ProfessionDto(profession.getId(), profession.getName(), profession.getDescription());
+    Set<SpecialtyDto> specialties= profession
+            .getSpecialtySet()
+            .stream()
+            .map(SpecialtyMapper::mapToDto)
+            .collect(Collectors.toSet());
+
+    return new ProfessionDto(profession.getId(), profession.getName(), profession.getDescription(), specialties);
   }
+
 }
