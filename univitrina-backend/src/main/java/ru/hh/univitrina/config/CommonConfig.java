@@ -16,6 +16,7 @@ import ru.hh.univitrina.client.HhApiClient;
 import ru.hh.univitrina.dao.UniversityDao;
 import ru.hh.univitrina.dao.ProfessionDao;
 import ru.hh.univitrina.dao.SpecialtyDao;
+import ru.hh.univitrina.resource.AreaResource;
 import ru.hh.univitrina.resource.ProfessionResource;
 import ru.hh.univitrina.resource.SpecialtyResource;
 import ru.hh.univitrina.resource.SuggestResource;
@@ -40,6 +41,7 @@ import ru.hh.univitrina.service.UniversityService;
     ProfessionResource.class,
     SpecialtyResource.class,
     UniversityResource.class,
+    AreaResource.class,
 })
 public class CommonConfig {
   private final FileSettings fileSettings;

@@ -85,6 +85,12 @@ public class UniversityDao extends GenericDao {
         .list();
   }
 
+  public List<Integer> getAreaId(){
+    return getSession()
+        .createQuery("SELECT DISTINCT areaId FROM University")
+        .list();
+  }
+
   public List<University> getSearchByCriteria(Integer areaId, Integer specialtyId, String text, Integer page, Integer perPage) {
     CriteriaBuilder cb = getSession().getCriteriaBuilder();
     CriteriaQuery<University> universityCriteria = cb.createQuery(University.class);
