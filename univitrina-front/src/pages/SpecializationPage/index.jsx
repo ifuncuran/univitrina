@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import getSpecializationData from '../../common/getSpecializationData';
+import { requestDataForSpecializationPage } from '../../common/request';
 import ProfessionCards from '../../components/ProfessionCards';
+import Description from '../../components/DescriptionSpecialization';
+import NoMatch from '../../components/NoMatch';
 
 function SpecializationPage() {
   const { id } = useParams();
-  const SpecializationData = getSpecializationData(id);
+
+  const [SpecializationData, setSpecializationData] = useState(null);
+
+  //  без функции-обертки не работает и ругается линтер,
+  //  в примерах асинхронные запросы в useEffect тоже с оберткой почему то идут
+  useEffect(() => {
+    async function fetchData() {
+      const response = await requestDataForSpecializationPage(id);
+      setSpecializationData(response);
+    }
+    fetchData();
+  }, [id]);
 
   return (
     <section position="static">
-      <p>{`id=${SpecializationData.specializationId}`}</p>
-      <p>{`name=${SpecializationData.name}`}</p>
-      <p>{`code=${SpecializationData.code}`}</p>
-      <p>{`description=${SpecializationData.description}`}</p>
-      <ProfessionCards cards={SpecializationData.professionsList} />
+      {!!SpecializationData && (
+        <>
+          <Description
+            name={SpecializationData.name}
+            description={SpecializationData.description}
+            id={SpecializationData.specializationId}
+          />
+          <ProfessionCards cards={SpecializationData.professionsList} />
+        </>
+      )}
+      {!SpecializationData && <NoMatch />}
     </section>
   );
 }

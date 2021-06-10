@@ -5,7 +5,7 @@ import useStyles from './style';
 import Suggest from './Suggest';
 import Select from './Select';
 import MainContainer from '../MainContainer';
-import requestDataForSuggest from '../../common/requestDataForSuggest';
+import { requestDataForSuggest } from '../../common/request';
 
 export default () => {
   const classes = useStyles();

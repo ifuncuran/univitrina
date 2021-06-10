@@ -1,6 +1,8 @@
+import getSpecializationData from './getSpecializationData';
+
 const pathApi = 'api';
 
-export default async (prefix, direction) => {
+export const requestDataForSuggest = async (prefix, direction) => {
   try {
     const pathSuggest = '/search/suggest';
     const urlSuggest = `${pathApi}${pathSuggest}`;
@@ -11,4 +13,10 @@ export default async (prefix, direction) => {
   } catch {
     return [];
   }
+};
+
+export const requestDataForSpecializationPage = async (id) => {
+  // пока заглушка
+  const result = await getSpecializationData(id);
+  return result;
 };
