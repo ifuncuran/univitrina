@@ -29,8 +29,8 @@ public class ProfessionResource {
     @Path("/specialty/{specialtyId}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ProfessionDto> getFilteredBySpecialty(@PathParam("specialtyId") Integer specialtyId,
-                                                      @QueryParam("page") @DefaultValue("1") Integer page,
-                                                      @QueryParam("per_page") @DefaultValue("10") Integer perPage) {
+                                                      @QueryParam("page") @DefaultValue("0") Integer page,
+                                                      @QueryParam("per_page") @DefaultValue("32") Integer perPage) {
         return professionService.getFilteredBySpecialty(page, perPage, specialtyId);
     }
 
