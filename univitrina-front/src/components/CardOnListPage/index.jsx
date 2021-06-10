@@ -12,58 +12,65 @@ import useStyles from './style';
 import declensionByNumber from '../../common/declensionByNumber';
 import useToggleState from '../../hooks/useToggleState';
 
-function UniversityCard({ id, title, description, specializationList }) {
+function CardOnListPage({
+  id,
+  title,
+  description,
+  pagePath,
+  sublist,
+  sublistPath,
+  sublistDeclension,
+}) {
   const classes = useStyles();
 
   const [isOpen, toggleIsOpen] = useToggleState(false);
 
-  const countSpecialities = specializationList.length;
+  const countSublist = sublist.length;
 
   return (
-    <Box className={classes.universityCard}>
+    <Box className={classes.card}>
       <Box
-        className={classNames(classes.universityCard__contentContainer, {
-          [classes.universityCard__contentContainer_open]: isOpen,
+        className={classNames(classes.card__contentContainer, {
+          [classes.card__contentContainer_open]: isOpen,
         })}
       >
-        <Box className={classes.universityCard__content}>
+        <Box className={classes.card__content}>
           <Typography
-            to={`/universities/${id}`}
+            to={`${pagePath}/${id}`}
             component={Link}
             variant="h3"
-            className={classes.universityCard__title}
+            className={classes.card__title}
           >
             {title}
           </Typography>
-          <Typography className={classes.universityCard__description}>
+          <Typography className={classes.card__description}>
             {description}
           </Typography>
 
           <Typography
-            className={classes.universityCard__showSpecialitiesLink}
+            className={classes.card__showSublistLink}
             onClick={toggleIsOpen}
           >
             {isOpen
-              ? 'Скрыть специализации'
-              : `${countSpecialities} ${declensionByNumber(countSpecialities, [
-                  'специализация',
-                  'специализации',
-                  'специализаций',
-                ])}`}
+              ? `Скрыть ${sublistDeclension[1]}`
+              : `${countSublist} ${declensionByNumber(
+                  countSublist,
+                  sublistDeclension
+                )}`}
           </Typography>
         </Box>
       </Box>
-      <Box className={classes.universityCard__SpecialitiesList}>
+      <Box className={classes.card__sublist}>
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <List disablePadding>
-            {specializationList.map((specialization) => (
+            {sublist.map((item) => (
               <ListItem
                 button
                 component={Link}
-                to={`/specializations/${specialization.id}`}
-                key={specialization.id}
+                to={`${sublistPath}/${item.id}`}
+                key={item.id}
               >
-                <ListItemText primary={specialization.name} />
+                <ListItemText primary={item.name} />
               </ListItem>
             ))}
           </List>
@@ -73,22 +80,28 @@ function UniversityCard({ id, title, description, specializationList }) {
   );
 }
 
-UniversityCard.propTypes = {
+CardOnListPage.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
-  specializationList: PropTypes.arrayOf(
+  pagePath: PropTypes.string,
+  sublist: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
     })
   ),
+  sublistPath: PropTypes.string,
+  sublistDeclension: PropTypes.arrayOf(PropTypes.string),
 };
-UniversityCard.defaultProps = {
+CardOnListPage.defaultProps = {
   id: 1,
   title: '',
   description: '',
-  specializationList: [],
+  pagePath: '',
+  sublist: [],
+  sublistPath: '',
+  sublistDeclension: [],
 };
 
-export default UniversityCard;
+export default CardOnListPage;
