@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Button, debounce, Grid, Paper, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import useIsNotMobie from '../../hooks/useIsNotMobile/useIsNotMobile';
 import useStyles from './style';
 import Suggest from './Suggest';
@@ -14,9 +15,9 @@ export default () => {
   const university = isNotMobile ? 'университетах' : 'ВУЗах';
 
   const [directions, setDirections] = useState([
-    { name: 'Специальность', value: '/specialty' },
-    { name: 'Профессия', value: '/profession' },
-    { name: 'ВУЗ', value: '/university' },
+    { name: 'Специальность', value: '/specializations' },
+    { name: 'Профессия', value: '/professions' },
+    { name: 'ВУЗ', value: '/universities' },
   ]);
 
   const firstElement = directions[0];
@@ -88,6 +89,8 @@ export default () => {
                     lg={3}
                   >
                     <Button
+                      to={`${firstElement.value}?text=${inputSuggestValue}`}
+                      component={Link}
                       className={classes.submitBtn}
                       variant="contained"
                       color="primary"
