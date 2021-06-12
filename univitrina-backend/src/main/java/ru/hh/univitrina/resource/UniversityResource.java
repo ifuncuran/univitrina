@@ -13,6 +13,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import ru.hh.univitrina.dto.UniversityDto;
+import ru.hh.univitrina.dto.UniversityShortDto;
 import ru.hh.univitrina.service.UniversityService;
 
 @Singleton
@@ -42,5 +43,12 @@ public class UniversityResource {
                                                @QueryParam("page") @DefaultValue("0") Integer page,
                                                @QueryParam("perPage") @DefaultValue("20") Integer perPage) {
     return universityService.getUniversityList(areaId, specialtyId, text, page, perPage);
+  }
+
+  @GET
+  @Path("/dictionary")
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<UniversityShortDto> getDictionary() {
+    return universityService.getDictionary();
   }
 }

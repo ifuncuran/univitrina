@@ -50,6 +50,13 @@ public class UniversityService {
         .collect(Collectors.toList());
   }
 
+  @Transactional
+  public List<UniversityShortDto> getDictionary() {
+    return universityDao.getAll(University.class).stream()
+        .map(UniversityMapper::mapToShortDto)
+        .collect(Collectors.toList());
+  }
+
   private UniversityDto convertToDto(University university) {
     List<SpecialtyDto> specialties = university.getSpecialtySet().stream()
         .sorted((o1, o2) -> Objects.compare(o1.getCode(), o2.getCode(), String::compareTo))

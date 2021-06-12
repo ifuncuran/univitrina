@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import ru.hh.univitrina.dao.ProfessionDao;
 import ru.hh.univitrina.dto.ProfessionDto;
 import ru.hh.univitrina.dto.ProfessionShortDto;
+import ru.hh.univitrina.entity.Profession;
 import ru.hh.univitrina.mapper.ProfessionMapper;
 
 public class ProfessionService {
@@ -74,10 +75,16 @@ public class ProfessionService {
   public List<ProfessionDto> getAllProfessions() {
 
     return professionDao
-            .getAll()
+            .getAll(Profession.class)
             .stream()
             .map(ProfessionMapper::mapToDto)
             .collect(Collectors.toList());
   }
 
+  @Transactional
+  public List<ProfessionShortDto> getDictionary() {
+    return professionDao.getAll(Profession.class).stream()
+            .map(ProfessionMapper::mapToShortDto)
+            .collect(Collectors.toList());
+  }
 }
