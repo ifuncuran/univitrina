@@ -3,7 +3,7 @@ package ru.hh.univitrina.resource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import ru.hh.univitrina.UnivitrinaTestBase;
 import ru.hh.univitrina.dto.ProfessionDto;
 import ru.hh.univitrina.entity.Profession;
