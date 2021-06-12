@@ -7,6 +7,7 @@ import useStyles from './style';
 import MainContainer from '../MainContainer';
 import FilterOnListPage from '../FilterOnListPage';
 import dynamicTitle from '../../common/dynamicTitle';
+import SearchOnListPage from '../SearchOnListPage';
 
 function DropDownList(params) {
   const { list, path, sublistPath, sublistDeclension } = params;
@@ -113,9 +114,7 @@ function ListBlock(params) {
 
   return (
     <>
-      <div>
-        <p>Поиск идёт по универам по url параметру text {query.get('text')}</p>
-      </div>
+      <SearchOnListPage textToSearch={query.get('text')} path={path} />
       <MainContainer fixed={isNotMobile}>
         <Typography className={classes.title} variant="h2">
           {dynamicTitle(filterList.length, query.get('text'), declensionList)}
