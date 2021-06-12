@@ -1,6 +1,6 @@
 import { Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
@@ -9,29 +9,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Box from '@material-ui/core/Box';
 import classNames from 'classnames';
 import useStyles from './style';
-import declensionByNumber from '../../common/declensionByNumber';
-import getSpecializationData from '../../common/getSpecializationData';
+import { requestDataForSpecializationPage } from '../../common/request';
 
 function SpecializationCard({ specializationId, title, code, description }) {
   const classes = useStyles();
+  const [professionsBySpecialization, setSpecializationData] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [
-    professionsBySpecialization,
-    setProfessionsBySpecialization,
-  ] = useState([]);
-
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback(async () => {
+    const response = await requestDataForSpecializationPage(specializationId);
+    setSpecializationData(response?.professionList ?? []);
     setIsOpen((currentState) => !currentState);
-  }, []);
-
-  useEffect(() => {
-    setProfessionsBySpecialization(
-      getSpecializationData(specializationId).professionsList
-    );
   }, [specializationId]);
-
-  const countProfessions = professionsBySpecialization.length;
 
   const ListProfessions = useMemo(
     () =>
@@ -99,13 +88,14 @@ function SpecializationCard({ specializationId, title, code, description }) {
             className={classes.specializationCard__showProfessionsLink}
             onClick={handleClick}
           >
-            {isOpen
-              ? 'Скрыть профессии'
-              : `${countProfessions} ${declensionByNumber(countProfessions, [
+            {
+              isOpen ? 'Скрыть профессии' : 'Показать профессии'
+              /* : `${countProfessions} ${declensionByNumber(countProfessions, [
                   'профессия',
                   'профессии',
                   'профессий',
-                ])}`}
+                ])}`} */
+            }
           </Typography>
         </Box>
       </Grid>
