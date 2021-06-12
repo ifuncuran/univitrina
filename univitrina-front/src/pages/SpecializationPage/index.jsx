@@ -4,11 +4,12 @@ import { requestDataForSpecializationPage } from '../../common/request';
 import ProfessionCards from '../../components/ProfessionCards';
 import Description from '../../components/DescriptionSpecialization';
 import NoMatch from '../../components/NoMatch';
+import Spacer from '../../components/Spacer';
 
 function SpecializationPage() {
   const { id } = useParams();
 
-  const [SpecializationData, setSpecializationData] = useState(null);
+  const [SpecializationData, setSpecializationData] = useState(false);
 
   //  без функции-обертки не работает и ругается линтер,
   //  в примерах асинхронные запросы в useEffect тоже с оберткой почему то идут
@@ -32,7 +33,8 @@ function SpecializationPage() {
           <ProfessionCards cards={SpecializationData.professionList} />
         </>
       )}
-      {!SpecializationData && <NoMatch />}
+      {SpecializationData === false && <Spacer />}
+      {SpecializationData === null && <NoMatch />}
     </section>
   );
 }
