@@ -91,13 +91,4 @@ public class ProfessionDao extends GenericDao {
             .setParameter("specialtyId", specialtyId)
             .list();
   }
-
-  public List<Profession> getAll() {
-    return getSession()
-            .createQuery("SELECT p FROM Profession p " +
-                            "ORDER BY p.name",
-                    Profession.class)
-            .list();
-  }
-
 }

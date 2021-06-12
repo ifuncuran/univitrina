@@ -58,6 +58,12 @@ public class SpecialtyService {
         .map(this::convertToDto);
   }
 
+  @Transactional
+  public List<SpecialtyShortDto> getDictionary() {
+    return specialtyDao.getAll(Specialty.class).stream()
+        .map(SpecialtyMapper::mapToShortDto)
+        .collect(Collectors.toList());
+  }
 
   private SpecialtyDto convertToDto(Specialty specialty) {
     List<ProfessionDto> professions = specialty.getProfessionSet().stream()

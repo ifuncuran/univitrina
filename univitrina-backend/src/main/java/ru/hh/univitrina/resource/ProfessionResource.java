@@ -1,6 +1,7 @@
 package ru.hh.univitrina.resource;
 
 import ru.hh.univitrina.dto.ProfessionDto;
+import ru.hh.univitrina.dto.ProfessionShortDto;
 import ru.hh.univitrina.service.ProfessionService;
 
 import javax.inject.Inject;
@@ -57,4 +58,10 @@ public class ProfessionResource {
         }
     }
 
+    @GET
+    @Path("/dictionary")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ProfessionShortDto> getDictionary() {
+        return professionService.getDictionary();
+    }
 }

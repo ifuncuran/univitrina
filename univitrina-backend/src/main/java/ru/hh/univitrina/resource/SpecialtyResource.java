@@ -1,6 +1,7 @@
 package ru.hh.univitrina.resource;
 
 import ru.hh.univitrina.dto.SpecialtyDto;
+import ru.hh.univitrina.dto.SpecialtyShortDto;
 import ru.hh.univitrina.service.SpecialtyService;
 
 import javax.inject.Inject;
@@ -54,5 +55,12 @@ public class SpecialtyResource {
                                                @QueryParam("page") @DefaultValue("0") Integer page,
                                                @QueryParam("per_page") @DefaultValue("20") Integer perPage) {
     return specialtyService.getSpecialtyList(text, trainingDirectionId, sectionId, professionId, universityId, page, perPage);
+  }
+
+  @GET
+  @Path("/dictionary")
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<SpecialtyShortDto> getDictionary() {
+    return specialtyService.getDictionary();
   }
 }
