@@ -9,7 +9,7 @@ import Spacer from '../../components/Spacer';
 function ProfessionPage() {
   const { id } = useParams();
 
-  const [ProfessionData, setProfessionData] = useState(false);
+  const [professionData, setProfessionData] = useState(false);
 
   //  без функции-обертки не работает и ругается линтер,
   //  в примерах асинхронные запросы в useEffect тоже с оберткой почему то идут
@@ -23,18 +23,18 @@ function ProfessionPage() {
 
   return (
     <section position="static">
-      {!!ProfessionData && (
+      {!!professionData && (
         <>
           <Description
-            name={ProfessionData.name}
-            description={ProfessionData.description}
-            id={ProfessionData.id}
+            name={professionData.name}
+            description={professionData.description}
+            id={professionData.id}
           />
-          <SpecializationCards cards={ProfessionData.specialties} />
+          <SpecializationCards cards={professionData.specialties} />
         </>
       )}
-      {ProfessionData === false && <Spacer />}
-      {ProfessionData === null && <NoMatch />}
+      {professionData === false && <Spacer />}
+      {professionData === null && <NoMatch />}
     </section>
   );
 }

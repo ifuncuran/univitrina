@@ -53,3 +53,15 @@ export const requestDataForProfessionPage = async (id) => {
     return null;
   }
 };
+
+export const requestDataForUniversityPage = async (id) => {
+  try {
+    const path = `/universities/${id}`;
+    const url = `${baseUrl}/${pathApi}${path}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result ?? null;
+  } catch {
+    return null;
+  }
+};
