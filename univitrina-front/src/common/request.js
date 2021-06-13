@@ -65,3 +65,31 @@ export const requestDataForUniversityPage = async (id) => {
     return null;
   }
 };
+
+export const requestDictionary = async (dictionary) => {
+  try {
+    let pathDictionary;
+    switch (dictionary) {
+      case 'profession':
+        pathDictionary = '/professions/dictionary';
+        break;
+      case 'speciality':
+        pathDictionary = '/specialties/dictionary';
+        break;
+      case 'university':
+        pathDictionary = '/universities/dictionary';
+        break;
+      case 'area':
+        pathDictionary = '/areas/areasWithUniversity';
+        break;
+      default:
+        return [];
+    }
+    const url = `${baseUrl}/${pathApi}${pathDictionary}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result ?? null;
+  } catch {
+    return null;
+  }
+};
