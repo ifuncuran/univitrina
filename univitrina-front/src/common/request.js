@@ -93,3 +93,15 @@ export const requestDictionary = async (dictionary) => {
     return null;
   }
 };
+
+export const requestDataForListPage = async (page, query) => {
+  try {
+    const path = `/${page}${query}`;
+    const url = `${baseUrl}/${pathApi}${path}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result ?? null;
+  } catch {
+    return null;
+  }
+};

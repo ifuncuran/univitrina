@@ -12,20 +12,18 @@ import SearchOnListPage from '../SearchOnListPage';
 function DropDownList(params) {
   const { list, path, sublistPath, sublistDeclension } = params;
   if (path === '/professions')
-    return list.map(
-      ({ name, description, professionId, specializationList }) => (
-        <CardOnListPage
-          key={professionId}
-          id={professionId}
-          sublist={specializationList}
-          title={name}
-          description={description}
-          pagePath={path}
-          sublistPath={sublistPath}
-          sublistDeclension={sublistDeclension}
-        />
-      )
-    );
+    return list.map(({ name, description, id, specialties }) => (
+      <CardOnListPage
+        key={id}
+        id={id}
+        sublist={specialties}
+        title={name}
+        description={description}
+        pagePath={path}
+        sublistPath={sublistPath}
+        sublistDeclension={sublistDeclension}
+      />
+    ));
   if (path === '/specializations')
     return list.map(
       ({ name, description, specializationId, professionsList }) => (
@@ -101,12 +99,9 @@ function ListBlock(params) {
   const [filterList, setFilterList] = useState([]);
 
   const getFilterList = useCallback(async () => {
-    const response = await getFilteredListRequest(
-      queryUrlParameterNames,
-      queryParameters
-    );
+    const response = await getFilteredListRequest(UrlSearch);
     setFilterList(response);
-  }, [queryParameters, getFilteredListRequest, queryUrlParameterNames]);
+  }, [UrlSearch, getFilteredListRequest]);
 
   useEffect(() => {
     getFilterList();
