@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFilteredSpecializationsList } from '../../common/getSpecializationData';
+import getFilteredSpecializationsList from '../../common/getSpecializationData';
 import { getSpecializationsParametersVariants } from '../../common/getParametersVariants';
 import ListBlock from '../../components/ListBlock';
 
