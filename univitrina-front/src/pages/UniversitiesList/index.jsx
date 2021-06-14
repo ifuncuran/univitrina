@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFilteredUniversitiesList } from '../../common/getUniversitiesData';
+import getFilteredUniversitiesList from '../../common/getUniversitiesData';
 import getUniversitiesParametersVariants from '../../common/getParametersVariants';
 import ListBlock from '../../components/ListBlock';
 

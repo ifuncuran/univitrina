@@ -25,27 +25,25 @@ function DropDownList(params) {
       />
     ));
   if (path === '/specializations')
-    return list.map(
-      ({ name, description, specializationId, professionsList }) => (
-        <CardOnListPage
-          key={specializationId}
-          id={specializationId}
-          sublist={professionsList}
-          title={name}
-          description={description}
-          pagePath={path}
-          sublistPath={sublistPath}
-          sublistDeclension={sublistDeclension}
-        />
-      )
-    );
-  if (path === '/universities')
-    return list.map(({ title, description, id, specializationList }) => (
+    return list.map(({ name, description, id, professionList }) => (
       <CardOnListPage
         key={id}
         id={id}
-        sublist={specializationList}
-        title={title}
+        sublist={professionList}
+        title={name}
+        description={description}
+        pagePath={path}
+        sublistPath={sublistPath}
+        sublistDeclension={sublistDeclension}
+      />
+    ));
+  if (path === '/universities')
+    return list.map(({ name, description, id, specialtyList }) => (
+      <CardOnListPage
+        key={id}
+        id={id}
+        sublist={specialtyList}
+        title={name}
         description={description}
         pagePath={path}
         sublistPath={sublistPath}
