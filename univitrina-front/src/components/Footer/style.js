@@ -2,6 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { colorText, largeGap } from '../../style';
 
 const useStyles = makeStyles((theme) => ({
+  spacer: { flex: '1' },
+
   root: {
     boxShadow: 'none',
     backgroundColor: colorText,
