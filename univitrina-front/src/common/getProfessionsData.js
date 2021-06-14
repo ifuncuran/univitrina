@@ -1,67 +1,21 @@
-const PROFESSIONS_EXAMPLE_DATA = [
-  {
-    professionId: 1,
-    name: 'Аналитик данных',
-    description: 'Он анализирует данные, делает выводы',
-    specializationList: [
-      {
-        id: 1,
-        code: '01.03.01',
-        name: 'Математика',
-        description: 'Математика - самая древняя наука',
-      },
-      {
-        id: 2,
-        code: '02.03.01',
-        name: 'Информатика',
-        description: 'Информатика - самая молодая наука',
-      },
-    ],
-  },
-  {
-    professionId: 2,
-    name: 'Криптограф',
-    description: 'Он шифрует и расшифровывает данные',
-    specializationList: [
-      {
-        id: 1,
-        code: '01.03.01',
-        name: 'Математика',
-        description: 'Математика - самая древняя наука',
-      },
-      {
-        id: 2,
-        code: '02.03.01',
-        name: 'Информатика',
-        description: 'Информатика - самая молодая наука',
-      },
-      {
-        id: 3,
-        code: '03.03.01',
-        name: 'Физика',
-        description:
-          'Физика - наука, которая появилась немного позже математики',
-      },
-    ],
-  },
-];
+import { requestDataForListPage } from './request';
 
-export default async function getFilteredProfessionsList(
-  queryParameterNames,
-  queryParameters
-) {
-  let professionsFilteredExampleData = PROFESSIONS_EXAMPLE_DATA;
-  queryParameters.forEach((parameter, index) => {
-    if (parameter) {
-      professionsFilteredExampleData = professionsFilteredExampleData.filter(
-        (univer) =>
-          parameter.localeCompare(univer[queryParameterNames[index]]) === 0
-      );
-    }
-  });
-  const promise = new Promise((resolve) => {
-    setTimeout(() => resolve(professionsFilteredExampleData), 500);
-  });
-  const result = await promise;
-  return result;
+export default async function getFilteredProfessionsList(query) {
+  // подменяем speciality на specialty_id
+  const searchParams = new URLSearchParams(query);
+  if (searchParams.has('speciality')) {
+    searchParams.append('specialty_id', searchParams.get('speciality'));
+    searchParams.delete('speciality');
+  }
+  // подменяем text на profession_name
+  if (searchParams.has('text')) {
+    searchParams.append('profession_name', searchParams.get('text'));
+    searchParams.delete('text');
+  }
+
+  const response = await requestDataForListPage(
+    'professions',
+    `?${searchParams.toString()}`
+  );
+  return response;
 }
