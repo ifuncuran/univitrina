@@ -11,6 +11,7 @@ import SearchOnListPage from '../SearchOnListPage';
 
 function DropDownList(params) {
   const { list, path, sublistPath, sublistDeclension } = params;
+  if (list === null) return null;
   if (path === '/professions')
     return list.map(({ name, description, id, specialties }) => (
       <CardOnListPage
@@ -94,7 +95,7 @@ function ListBlock(params) {
     getParametersVariants();
   }, [getParametersVariants]);
 
-  const [filterList, setFilterList] = useState([]);
+  const [filterList, setFilterList] = useState(null);
 
   const getFilterList = useCallback(async () => {
     const response = await getFilteredListRequest(UrlSearch);
@@ -110,7 +111,7 @@ function ListBlock(params) {
       <SearchOnListPage textToSearch={query.get('text')} path={path} />
       <MainContainer fixed={isNotMobile}>
         <Typography className={classes.title} variant="h2">
-          {dynamicTitle(filterList.length, query.get('text'), declensionList)}
+          {dynamicTitle(filterList, query.get('text'), declensionList)}
         </Typography>
         <Grid container justify="flex-end" spacing={spacing}>
           <Grid item xs="auto" sm={12} md={4} lg={4}>

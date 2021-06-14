@@ -1,10 +1,9 @@
 import declensionByNumber from './declensionByNumber';
 
-export default function dynamicTitle(
-  numberOfFound,
-  searchString,
-  declensionList
-) {
+export default function dynamicTitle(list, searchString, declensionList) {
+  if (list === null) return list;
+
+  const numberOfFound = list.length;
   let numberOfFoundString = '';
   let searchStringAddition = ' ';
   let endOfOutput = '';
